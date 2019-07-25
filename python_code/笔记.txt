@@ -1,0 +1,471 @@
+基本语法
+1.print()可拼接，eg：print('hello ','python')或者print('hello '+'python')
+  print()的格式输出：print("%d,%f,%s",%(a,b,c))
+
+
+2.type(),用于检查变量或常量的类型
+
+3.input(),返回的是一个字符串类型的数据
+
+4.len(),计算含有多少个字符，len(b'abc')计算含有多少字节
+
+5.list,列表,用[]表示。同样可以用len()函数计算列表元素个数
+    列表索引：类似数组的方式 list[0],list[1],list[2] ...
+                    或者 list[-1](最后一个元素)，list[-2]....
+    元素追加：list.append('元素')，将元素加到列表最后
+    元素插入：list.insert(1,'元素')，将元素插入到指定(此处是1)索引的位置
+    删除元素：list.pop(索引)，删一个元素，没有索引是删除最后一个
+    替换元素：直接给元素赋新值
+   注意：列表的元素没有类型限制，也可是另一个列表或元组
+
+6.tuple,元组，用()表示。一旦初始化后里面的元素就不可以改变，但是如果元素是一个list，那么list中的元素可以改变
+    只有一个元素的元组写作：tuple(1,)
+
+7.条件语句if
+    基本格式： if 条件1：
+                条件1满足时执行的语句1
+                条件1满足时执行的语句2
+                条件1满足时执行的语句3
+              else:
+                条件不满足时执行的语句1
+                条件不满足时执行的语句2
+                条件不满足时执行的语句3
+
+    elif用法：
+              if 条件1：
+                   语句
+              elif 条件2：
+                    语句
+              else：
+                    语句
+
+8.循环
+    for循环：  for x in y: #将y中的每一对象放到x中，y要是元组或列表，x可以多个变量，用逗号隔开
+                    语句
+
+    while循环：  while 条件：
+                       语句   #和C的while类似
+
+9.dic,字典，以key-value的方式存储，一般格式dict_name{'a':45,'b':12,'d':10},存储时无序的，key不能是可变对象
+    字典的用法，打印value，print(dict_name[key])，
+            给某个键值赋新值dict_name[key] = new_value
+
+    判断某个key是否存在：key in dict_name,返回true或false
+                      dict_name.get(key),不存在返回None，存在返回键值
+    删除一个key：dict_name(key),对应的value也会删除
+
+10.set，是一组key的集合，但是不存储value，key不重复，创建一个set需要提供一个list
+    set的创建： set_name = set([1,5,6,56,'abc']),存储的数据是无序的
+    添加元素：set_name.add(key)
+    删除元素：set_name.remove(key)
+
+11.函数
+    一般形式：  def  funtion_name(参数)：
+                    执行语句
+                    return 返回值      #可返回多个值，用逗号隔开，实际返回的是一个tuple
+
+    空函数：    def nop():
+                   pass     #什么也不执行的语句，也可以用在其他地方，比如if中
+
+
+    函数的参数类型：位置参数(必选参数)，例如：      def power(x):
+                                        return x*x
+                          位置参数不可省略
+                 默认参数，例如        def power(x,n=2):   #定义一个求x的n次方的函数，调用时不写n，默认为2
+                                        s = 1
+                                        while n > 0:
+                                            n = n-1
+                                            s = s*x
+                                        return s
+                          使用默认参数必须定义时默认参数放在必选参数之后
+                          当函数有多个默认参数时，如函数 student(name,class,age = 6,city='Beijing'),要修改默认参数时，多个默认参数要按顺序填写，
+                          如果只是修改后面的默认参数，则student('a',1,city='tianjin')
+                          定义默认参数时，尽量选择不可变对象
+
+                 可变参数，传入函数的参数个数可变，实际是在函数内部组成一个tuple
+                         例如：    def calc(*numbers):     #只要在参数前加*就是定义可变参数，多个参数传入时用逗号隔开
+                                      sum = 0
+                                      for n in numbuers:
+                                          sum = sum + n * n
+                                      retunr sum
+                         上面函数的调用，calc(1,2,5,5)  #传入多个参数
+                                      calc(*list)    #传入已有的list或tuple
+                         也可以传入0个参数
+
+                 关键字参数，参入的参数在函数内部组装成一个dict
+                         例如       def person(name,age,**kw):
+                                        print('name:',name,'age:',age,'other:',kw)
+                         调用该函数，person('ton',15)     #只传入必选参数
+                                >>>name:ton  age:15 other:{}
+                                   person('jac',19,city='Beijing')
+                                >>>name:jac  age:19 other:{'city':'Beijing'}
+                                   person('alic',12,**dict)     #关键字参数传入已经定义字典
+
+                 命名关键字参数，规定传入的key
+                         例如        def person(name,age,*,city='Beijing',job):    #*后的都是命名关键字参数,且命名关键字参数可以设置默认值，
+                                                                                  #调用时可以省略默认值参数
+                                        print(name,age,city,job)
+                         调用：person('al',15,city='Beijing',job='doctor')
+                         在没有设定默认参数时，所有的命名关键字参数都需要传入值
+
+    参数混用规则：可变参数不可和命名关键字参数混合
+               参数定义顺序：必选参数，默认参数，可变参数/命名关键字参数,关键字参数
+
+
+
+
+
+高级特性
+
+1.切片，用于对list或tuple的索引
+    用法：定义有N个元素的list，比如取前n个元素 list[0:n],这种方式是左闭右开，取的元素的索引是0~(n-1)共n个元素
+        第一个索引是0可以忽略，可写成list[:n]
+        同样也可以从其他元素索引开始，例如list[1:5],但是无论从那个元素开始多是遵循左闭右开的规则
+
+        支持倒数切片，例如：list[-2:]取倒数两个元素。
+                        list[-2:-1]取倒数第二个元素，依旧是左闭右开，且数值是由大到小
+        按一定间隔取元素,list[:10:2],取前10个元素，每隔2个取一个
+
+        tuple和字符串也支持切片操作
+
+
+2.迭代，如果给定一个list或tuple，我们可以通过for循环来遍历这个list或tuple，这种遍历我们称为迭代。
+      可迭代对象:list,tuple,dict,str
+      判断是否为可迭代对象：     from collections import Iterable      #导入collections模块中的Iterable类型
+                             isinstance('判断对象',Iterable)        #可迭代返回true，不可迭代返回false
+
+
+3.列表成式，用来创建列表的生成式。
+    一般用法：list_name = list(range(1,11)),生成一个1到10的列表，list(),在括号里可以填写表达式
+    列表[1*1,2*2，3*3,...,10*10]的写法：[x*x for x in range(1,11)],把要生成的列表的表达式写在前面，后面更是个那循坏
+    循坏后还可以跟if判断，    eg： [x*x for x in range(1,11) if x%2 == 0]
+    使用两层循坏：[m+n for m in 'ABC' for n in 'XYZ'] 生成全排列的列表
+
+4.生成器(generator),是一种一边循坏一边计算的机制
+    创建生成器的方法：  1,把列表生成式的[]写成()，就是创建一个生成器：eg: g = (x*x for x in range(10)),
+    打印generator，next(g)或者循环(常用)
+                      2,以函数的形式定义，定义一个斐波那契的的函数
+                                        def fib(max):
+                                            n, a, b = 0,0,1
+                                            while n < max:
+                                                print(b)
+                                                a, b = b, a+b
+                                                n = n+1
+                                             return 'done'
+                                        定义generator
+                                        def fib(max):
+                                            n, a, b = 0,0,1
+                                            while n < max:
+                                                yield b
+                                                a, b = b, a+b
+                                                n = n+1
+                                            return 'done'
+
+5,迭代器(Iterator)
+
+
+
+
+
+函数式编程
+
+1,高阶函数，函数名就是变量，可以带入函数中 eg: def add(x,y,f):
+                                                return f(x)+f(y)
+                                        
+                                            add(10,-3,abs)  #abs函数作为参数传入
+
+
+2,map/reduce  python内建函数
+    map()函数接收两个参数，一个是函数，一个是Iterable(可迭代对象)，将函数作用到每一个元素，返回一个Iterator(迭代器)
+    reduce()函数接收两个参数，一个是函数，一个是序列，其效果如下
+        reduce(f,[x1,x2,x3,x4]) = f(f(f(x1,x2),x3),x4)
+
+3,filter  用于过滤序列，和map()类似，也是接收一个函数和一个序列，filter函数吧传入的函数依次作用于每个元素然后根据返回的值是true还是false决定保留还是丢弃该元素
+
+4,sorted  排序算法，sorted用于对list进行排序 ：sorted([34,24,532,123,6,23,-3])
+                   接受哦一个key进行自定义的排序： sorted([12,34,23,-53,-23],key=abs) #按绝对值大小排序
+                   进行反向排序 ： sorted([12,34,23,-53,-23],key=abs,reverse = True) #使用reverse参数
+
+
+5,返回函数，函数作为返回值，
+
+
+6,匿名函数
+
+
+7,装饰器(Decorator)
+
+
+
+面向对象
+1,类中有属性和方法(函数，行为)，示例化对象
+
+2,相关术语： 方法：类中定义的函数
+            数据成员:类变量或者实例变量用于处理类及其实例对象的相关的数据
+            方法重载:如果从父类继承的方法不能满足子类的需求，可以对其进行改写，这个过程叫方法的覆盖
+            实例变量:定义在方法中的变量，只作用于当前实例的类
+            类变量:类变量在整个实例化的对象中是公用的，类变量定义在类中且在函数体之，类类型通常不作为实例变量使用。
+            继承: 即一个派生类继承基类的字段方法
+                   继承也允许吧一个派生类的对象作为一个基类对象对待
+                  例如,有这样一个设计:一个dog类型的对象派生自animal类，这是模拟"是一个(is-a)关系"
+
+
+3,创建类
+           class ClassName
+                '类的帮助信息'        #类文档字符串
+                类变量                 #类体 class_suite 由类成员，方法，数据属性组成
+                def __init__(self,paramers)
+                def 函数(self,...)
+                ...
+
+       eg:  class Employee:
+                '''
+                this is a test demo  #这里的注释用help(实例)函数，会显示
+                '''
+                classSpec = "it is a test class"
+                 def __init__(self, name, salary):  # 构造方法，传参，self自己，
+                    self.name = name
+
+                     self.salary = salary
+                 def hello(self):
+                    '''
+                    print name #同样会在help显示
+                    '''
+                     print(self.name)
+
+
+
+面向对象 (教程链接 https://www.bilibili.com/video/av14184325/?p=370)
+1,类包含：类名，属性，方法
+2,创建对象的的过程
+        1.创建一个对象
+        2.Python会自动调用__init__初始化对象
+        3.返回创建的对象的引用给对象名
+
+3,内置方法：__init__(),自动调用
+           __str__(), 打印对像时，输出的是该方法的返回值
+
+
+示例代码：
+
+class Cat:        #创建一个Cat类
+  '''
+  定义一个类
+  '''
+  #初始化对象
+  def __init__(self,new_naem,new_age):  #创建对像会自动调用,并且要把name和age这两个属性传入
+    #print("---初始化---")
+    self.naem = new_name
+    self.age = new_age
+
+  def __str__(self):
+    return "输出"         #使用print(对象)，打印的是此处返回的值
+
+  #方法
+  def eat(self): #方法必须写一个变量，可以不是self，但一般用self
+      print("cat is eatting")
+
+  def drink(self):
+      print("cat is drinking")
+
+  def introduce(self):
+      print("%s的年龄是:%d"%(self.name,self.age))  #self.name表示调用对象的属性
+
+#创建一个对象
+#tom = Cat()
+tom = Cat("汤姆",40)
+
+#调用tom指向的对象中的方法
+tom.eat()
+tom.drink()
+
+#给tom指向的对象添加2个属性
+#tom.name = "汤姆"
+#tom.age = 40
+
+#获取属性的第一种方法
+#print("%s的年龄是:%d"%(tom.name,tom.age))  #self.name表示调用对象的属性
+
+#第二种方法
+tom.introduce()
+
+
+4,属性设置要用方法设置(合理)
+5,私有属性,在方法前加两个下划线
+
+
+class Dog:
+    def __init__():
+        pass
+
+    def __test1(): #私有方法
+        pass
+
+    def test2();
+        self.__test1()      #调用类中的方法
+
+
+
+5, __del__() 方法,删除(引用计数为0)一个对象时会自动调用这个方法，
+class Dog:
+
+   def __del__(self):
+        print('----')
+
+
+dog1 = Dog()
+dog2 = dog1
+del dog1    #还没有完全删除
+del dog2    #已完全删除
+
+
+
+
+6,继承，子类可以用父类中的方法
+class Animal:       #父类
+    def eat(self):
+        printf('eat')
+    def drink(self):
+        print('drink')
+
+class Dog(Animal):  #定义一个继承于Animal的子类
+      pass
+
+class Wangcai(Dog): #二级继承
+      pass
+
+
+7,重写，在子类中重写父类的方法，直接在子类中重新写一个和父类同名的方法
+
+class Animal:       #父类
+    def eat(self):
+        printf('eat')
+    def drink(self):
+        print('drink')
+
+class Dog(Animal):  #定义一个继承于Animal的子类
+     def eat(self):
+         Animal.eat(self)     #第一种调用父类中被重写的方法
+         super().eat()        #第二种调用父类中被重写的方法
+
+
+8,多继承，子类继承自多个父类
+
+class Base(object):     #object 默认是继承的，新式类，所有的
+    def test(self)
+        pass
+
+class A(Base):
+    def test1(self):
+        pass
+
+
+class B(Base):
+    def test2(self):
+        pass
+
+class C(A,B):       #定义一个多继承类，可以调用A,B,Base中的方法
+    pass
+
+
+注意：当多个父类中有同名的方法时，通过print(类名.__mro__)可以列出调用的搜索顺序
+
+
+9,多态，定义时不确定类型，使用时才确定
+面向对象的三要素: 封装，继承，多态
+
+
+
+10,实例属性和类属性，  类和实例都是对象
+实例属性:和某个具体的对象有关系，两个不同的实例对象不共享属性的
+类属性:类属性属于类对象，并且对个实例对象共享类属性
+
+
+
+class Tool(object):
+    #属性
+    num = 0
+    #方法
+    def __init__(self,new_name):
+        self.name = new_name    #实例属性
+        Tool.num += 1       #调用类属性
+
+
+
+tool1 = Tool("t1")
+tool2 = Tool("t2")
+tool3 = Tool("t3")
+
+11,类方法(操作类属性)，实例方法(操作实例属性)，静态方法(不操作任何属性)
+
+class Game(object):
+    #类属性
+    num = 0
+
+    #实例方法，操作实例
+    def __init__(self):
+        #实例属性
+        self.name = 'laowang'
+
+    #类方法
+    @classmethod     #固定格式
+    def add_num(cls):
+        cls.num = 100
+
+
+    #静态方法
+    @staticmethod
+    def sta_way(): #可以没有参数
+        pass
+
+game = Game()
+#Game.add_num()  #通过类的名字调用类方法
+game.add_num()   #通过这个类创建的出的对象调用方法
+
+#调用静态方法
+Game.sta_way()   #通过类的名字调用类方法
+game.sta_way()   #通过这个类创建的出的对象调用方法
+
+
+12,__new__()方法和__init__()方法，new方法时父类(object)中创建对象的方法，重定义这个方法后一定要调用父类中的new,对象才能创建
+
+class Dog(object):
+    def __init__(self):
+        print("init")
+
+    def __del__(self):
+        print("del")
+
+    def __str__(self):
+        print("str")
+
+    def __new__(cls):
+        print("new")
+        return object.__new__(cls)  #调用父类的new方法创建对象
+
+
+dog = Dog()
+
+执行过程
+1.调用new方法来创建对象，找一个变量来接收new的返回值，这个返回值表示创建的对象的引用
+2.调用init
+3.返回对象的引用
+
+
+
+13,单例
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
