@@ -69,7 +69,7 @@
 
 
     函数的参数类型：位置参数(必选参数)，例如：      def power(x):
-                                        return x*x
+                                                    return x*x
                           位置参数不可省略
                  默认参数，例如        def power(x,n=2):   #定义一个求x的n次方的函数，调用时不写n，默认为2
                                         s = 1
