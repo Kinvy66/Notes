@@ -44,6 +44,7 @@
 
 ## 四、其他
 
-* [mathjax_tutorial_mdeditor.md](G:\Repository\Notes\Others\mathjax_tutorial_mdeditor.md)
+* [mathjax_tutorial_mdeditor.md ](https://gitee.com/Kinvy66/Notes/blob/master/Others/mathjax_tutorial_mdeditor.md)
 
   
+
