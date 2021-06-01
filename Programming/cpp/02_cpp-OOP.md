@@ -98,12 +98,12 @@ int main()
 
 
 
-总结:
-
-* C++中程序运行前分为全局区和代码区
-* 代码区特点是共享和只读
-* 全局区中存放全局变量，静态变量，常量
-* 常量区中存放const修饰的全局常量和字符串常量
+> 总结:
+>
+> * C++中程序运行前分为全局区和代码区
+> * 代码区特点是共享和只读
+> * 全局区中存放全局变量，静态变量，常量
+> * 常量区中存放const修饰的全局常量和字符串常量
 
 
 
@@ -497,7 +497,6 @@ int main()
 ```c++
 #include <iostream>
 using namespace std;
-const double PI = 3.14;
 
 class Person 
 {
@@ -555,7 +554,6 @@ int main()
 ```c++
 #include <iostream>
 using namespace std;
-const double PI = 3.14;
 
 class Person 
 {
@@ -666,7 +664,6 @@ int main()
 ```c++
 #include <iostream>
 using namespace std;
-const double PI = 3.14;
 
 class Person 
 {
@@ -751,7 +748,6 @@ C++提供了初始化列表语法，用来初始化属性
 ```c++
 #include <iostream>
 using namespace std;
-const double PI = 3.14;
 
 class Person 
 {
@@ -821,7 +817,6 @@ class B
 ```c++
 #include <iostream>
 using namespace std;
-const double PI = 3.14;
 
 class A
 {
@@ -869,6 +864,784 @@ int main()
 
 
 ![image-20210530182757209](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210530182757209.png)
+
+#### 3.2.7 静态成员
+
+静态成员就是在成员变量和成员汉化苏前加上关键字static，称为静态成员
+
+静态成员分为：
+
+* 静态成员变量
+  * 所有对象共享同一分数据
+  * 在编译阶段分配内存
+  * 类内声明，类外初始化
+* 静态成员函数
+  * 所有对象共享同一个函数
+  * 静态成员函数只能访问静态成员变量
+
+
+
+**示例1：** 静态成员变量
+
+```c++
+#include <iostream>
+using namespace std;
+
+class Person
+{
+public:
+	static int m_A;  //静态成员变量
+
+private:
+	static int m_B;
+};
+int Person::m_A = 10;
+int Person::m_B = 20;
+
+void test01()
+{
+	//静态成员变量两种访问方式
+
+	//1.通过对象
+	Person p1;
+	p1.m_A = 100;
+	cout << "p1.m_A = " << p1.m_A << endl;
+
+	Person p2;
+	p2.m_A = 200;
+	cout << "p1.m_A = " << p1.m_A << endl;
+	cout << "p2.m_A = " << p2.m_A << endl;
+
+	//2.通过类名
+	cout << "m_A = " << Person::m_A << endl;
+
+	//cout << "m_B = " << Person::m_B << endl;		//私有权限无法访问
+}
+
+int main()
+{
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+**示例2：**静态成员函数
+
+```c++
+#include <iostream>
+using namespace std;
+
+class Person
+{
+public:
+	static void func()
+	{
+		cout << "func()" << endl;
+		m_A = 100;
+
+	}
+
+	static int m_A;		//静态成员
+	int m_B;
+
+private:
+	static void func2()
+	{
+		cout << "func2()" << endl;
+	}
+};
+int Person::m_A = 10;
+
+void test01()
+{
+	//静态函数两种访问方式
+
+	//1.通过对象
+	Person p1;
+	p1.func();
+
+	//2.通过类名
+	Person::func();
+}
+
+int main()
+{
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+
+
+### 3.3 C++对象模型和this指针
+
+
+
+#### 3.3.1 成员变量和成员函数分开存储
+
+
+
+在c++中，类内的成员变量和成员函数分开存储
+
+只有非静态成员变量才属于类的对象上
+
+```c++
+#include <iostream>
+using namespace std;
+
+class Person
+{
+public:
+	Person()
+	{
+		mA = 10;
+	}
+
+	//非静态成员变量占对象空间
+	int mA;
+	//静态成员变量不占对象空间
+	static int mB;
+	//函数也不占对象空间，所有函数共享一个函数实例
+	void func()
+	{
+		cout << "mA = " << this->mA << endl;
+	}
+	//静态成员函数也不占对象空间
+	static void sfunc()
+	{
+
+	}
+};
+
+int main()
+{
+	cout << sizeof(Person) << endl;
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+注：上面程序打印输出是 4 ,即只有非静态成员变量占用空间，==如果类中没有非静态成员变量，则类的大小为1==
+
+
+
+#### 3.3.2  this指针概念
+
+**this指针指向被调用的成员函数所属的对象**
+
+this指针是隐含每一个非静态成员函数内的一种指针
+
+this指针不需要定义，直接使用即可
+
+
+
+this指针的用途：
+
+* 当形参和成员变量同名是，可用this指针来区分
+* 在类的非静态成员函数中返回对象本身，可使用 `return *this`
+
+
+
+```c++
+#include <iostream>
+using namespace std;
+
+class Person
+{
+public:
+	Person(int age)
+	{
+		//1.当形参和成员变量同名是，可用this指针来区分
+		this->age = age;
+	}
+	Person& PersonAddPerson(Person p)
+	{
+		this->age += p.age;
+		//返回对象本身
+		return *this;
+	}
+
+	int age;
+};
+
+void test01()
+{
+	Person p1(10);
+	cout << "p1.age = " << p1.age << endl;
+
+	Person p2(10);
+	p2.PersonAddPerson(p1).PersonAddPerson(p1).PersonAddPerson(p1); //链式编程
+	cout << "p2.age = " << p2.age << endl;
+}
+
+int main()
+{
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+
+
+#### 3.3.3 空指针访问成员函数
+
+c++中空指针也是可以调用成员函数的，但是也要注意有没有用到this指针
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+using namespace std;
+
+class Person
+{
+public:
+	void showClassName()
+	{
+		cout << "Class Person" << endl;
+	}
+	void showPerson()
+	{
+		cout << m_age << endl;
+	}
+
+	int m_age;
+};
+
+void test01()
+{
+	Person* p = nullptr;
+	p->showClassName();		//空指针，可以调用成员函数
+	//p->showPerson;			//成员函数中m_age是隐含this的，而this是空，所以无法访问,可在成员函数加if判断this的空
+}
+
+int main()
+{
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+#### 3.3.4 const修饰成员函数
+
+**常函数:**
+
+* 成员函数后加const后我们称为这个函数为**常函数**
+* 常函数内不可以修改成员属性
+
+
+
+**常对象:	**
+
+* 声明对象前加const称为该对象为常对象
+* 常对象只能调用常函数
+
+
+
+**示例:	**
+
+```c++
+#include <iostream>
+using namespace std;
+
+class Person
+{
+public:
+	Person()
+	{
+		m_A = 0;
+		m_B = 0;
+	}
+
+	//this指针的本质是一个指针常量，指针的指向不可修改
+	//如果想让指针指向的值不可以修改，需要声明常函数
+	void showPerson() const
+	{
+		//const Type* const pointer;
+		//this = nullptr;		//不能修改指针的指向  Person* const this;
+		//this->m_A = 100;	//但是this指针指向的对象的数据是可以修改的
+		//const修饰成员函数，表示指针指向的内存空间的数据不能修改，除了mutable修饰的变量
+		this->m_B = 100;
+	}
+	void myFunc()
+	{
+		m_A = 1000;
+	}
+
+public:
+	int m_A;
+	mutable int m_B;	//可修改，可变的
+
+};
+
+void test01()
+{
+	const Person p;		//常量对象
+	cout << p.m_A << endl;
+	//p.m_A = 100;		//常量对象不能修改成员变量的值，但可以访问
+	p.m_B = 1000;		//但是常对象可以修改mutable修饰成员变量
+
+	//常对象访问成员函数
+	//p.myFunc();		//常对象不能调用普通的成员函数
+
+}
+
+int main()
+{
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+
+
+### 3.4 友元
+
+友元的目的是让一个函数或者类访问另一个类中私有私有成员
+
+
+
+友元关键字==friend==
+
+
+
+友元的三种实现：
+
+* 全局函数做友元
+* 类做友元
+* 成员函数做友元
+
+
+
+```c++
+#include <iostream>
+#include <string>
+using namespace std;
+
+class A;
+class B
+{
+public:
+	B();
+	void b_func();
+	void b_visit();
+
+private:
+	A* a;
+};
+
+class A
+{
+	friend void g_func(A* a);		//全局函数做友元
+	friend class B;					//类做友元
+	friend void B::b_visit();		//成员函数做友元
+public:
+	A()
+	{
+		this->m_A = "mA";
+		this->m_B = "mB";
+	}
+public:
+	string m_A;
+
+private:
+	string m_B;
+};
+
+
+B::B()
+{
+	a = new A;
+}
+void B::b_func()
+{
+	cout << "class B visit " << a->m_A << endl;
+	cout << "class B visit " << a->m_B << endl;
+}
+void B::b_visit()
+{
+	cout << "class B b_visit() " << a->m_A << endl;
+	cout << "class B b_visit()  " << a->m_B << endl;
+}
+
+
+//全局函数
+void g_func(A* a)
+{
+	cout << "g_func() 访问" << a->m_A << endl;
+	cout << "g_func() 访问" << a->m_B << endl;
+
+}
+
+//1.全局函数做友元
+void test01()
+{
+	A a;
+	g_func(&a);
+}
+
+//2.类做友元
+void test02()
+{
+	B b;
+	b.b_func();
+}
+
+//3. 成员函数做友元
+void test03()
+{
+	B b;
+	b.b_visit();
+}
+
+int main()
+{
+	test01();
+	test02();
+	test03();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+**注：**在上面的示例中，B的方法必须==类外实现==，因为B的方法访问A，而A只是声明了，并没有定义，只有在定义之后才可以访问。
+
+
+
+### 3.5 继承
+
+
+
+#### 3.5.1 继承的基本语法
+
+**语法:**  	`class 父类 : 继承方式 子类`  
+
+
+
+**继承方式有三种:**
+
+* 公共继承
+* 保护继承
+* 私有继承
+
+
+
+
+
+![img](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/clip_image002.png)
+
+
+
+
+
+*  **继承中的对象模型**
+
+  ==父类中的所有成员都会被子类继承下去，包括私有成员，但是编译器会隐藏私有成员使子类无法访问==
+
+
+
+#### 3.5.2 继承中构造和析构顺序
+
+
+
+**示例:	**
+
+```c++
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Base
+{
+public:
+	Base()
+	{
+		cout << "Base构造" << endl;
+	}
+
+	~Base()
+	{
+		cout << "Base析构" << endl;
+	}
+};
+
+class Son :public Base
+{
+public:
+	Son()
+	{
+		cout << "Son 构造" << endl;
+	}
+	~Son()
+	{
+		cout << "Son析构" << endl;
+	}
+};
+
+void test01()
+{
+	Son s;
+}
+
+int main()
+{
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+打印输出结果：
+
+![image-20210531171338376](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210531171338376.png)
+
+> 总结：继承中先调用父类构造函数，在调用子类构造函数，析构顺序与构造相反
+
+
+
+
+
+#### 3.5.3  继承同名成员处理方式
+
+当子类与父类出现同名的成员
+
+* 访问子类同名成员  直接访问即可
+* 访问父类同名成员  需要加作用域
+
+
+
+**示例：	**
+
+```c++
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Base
+{
+public:
+	Base()
+	{
+		m_A = 100;
+	}
+	void func()
+	{
+		cout << "Base func()" << endl;
+	}
+	void func(int a)
+	{
+		cout << "Base func(int a)" << endl;
+	}
+
+	int m_A;
+};
+
+class Son :public Base
+{
+public:
+	Son()
+	{
+		m_A = 200;
+	}
+	void func()
+	{
+		cout << "Son func()" << endl;
+	}
+
+	
+	int m_A;
+};
+
+void test01()
+{
+	Son s;
+
+	cout << "Son m_A: " << s.m_A << endl;
+	cout << "Base m_A:" << s.Base::m_A << endl;
+
+	s.func();
+	s.Base::func();
+	s.Base::func(10);
+}
+
+int main()
+{
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+> 总结：
+>
+> 1. 子类对象可以直接访问到子类中同名成员
+> 2. 子类对象加作用域可以访问到父类同名成员
+> 3. 当子类与父类拥有同名的成员函数，子类会隐藏父类中同名成员函数，加作用域可以访问到父类中同名函数
+
+
+
+==注： 对于继承同名静态成员处理方式和以上一样，静态成员需要通过类名访问==
+
+
+
+
+
+#### 3.5.4 多继承
+
+ c++允许 **一个类继承多个类**
+
+
+
+语法：`class 子类：继承方式 父类1，继承方式 父类2...`
+
+多继承中可能会引发父类中有同名成员出现，需要加作用域区分
+
+
+
+**c++实际开发中不建议用多继承**
+
+
+
+#### 3.5.5  菱形继承
+
+**菱形继承概念：**
+
+​	两个派生类继承同一个基类
+
+​	又有某个类同时继承两个派生类
+
+​	这种继承被称为菱形继承，或者钻石继承
+
+
+
+![clip_image003](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/clip_image003.jpg)
+
+
+
+**菱形继承问题：	**
+
+1. 羊继承了动物的数据，驼同样继承了动物的数据，当草泥马使用数据时，就会产生二义性。
+2. 草泥马继承自动物的数据继承了两份，其实我们应该清楚，这份数据我们只需要一份就可以。
+
+
+
+**示例：	**
+
+```c++
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Animal
+{
+public:
+	int m_Age;
+};
+
+//继承前加virtual关键字后，变为虚继承
+//此时公共的父类Animal称为虚基类
+class Sheep : virtual public Animal {};
+class Tuo	: virtual public Animal {};	
+class SheepTuo : public Sheep, public Tuo {};
+
+void test01()
+{
+	SheepTuo st;
+	st.Sheep::m_Age = 100;
+	st.Tuo::m_Age = 200;
+
+	cout << "st.Sheep::m_age =  " << st.Sheep::m_Age << endl;
+	cout << "st.Tuo::m_age = " << st.Tuo::m_Age << endl;
+	cout << "st.m_age = " << st.m_Age << endl;
+}
+
+int main()
+{
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+> 总结
+>
+> 1. 菱形继承带来的主要问题是子类继承两份相同的数据，导致资源浪费以及毫无意义
+> 2. 利用虚继承可以解决菱形继承问题
+
+
+
+
+
+
+
+### 3.6 多态
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
