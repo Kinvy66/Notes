@@ -27,7 +27,7 @@
 ### 1.C/C++
 
 * [01_cpp-Base.md](https://gitee.com/Kinvy66/Notes/blob/master/Programming/cpp/01_cpp-Base.md)
-* 
+* [02_cpp-OOP.md](https://gitee.com/Kinvy66/Notes/blob/master/Programming/cpp/02_cpp-OOP.md)
 
 ### 2.Java
 
@@ -39,7 +39,8 @@
 
 ## 三、机器学习
 
-* [01_机器学习基本概念.md](https://gitee.com/Kinvy66/Notes/blob/master/MachineLearning/01_机器学习基本概念.md)
+* [01_ML-Base.md](https://gitee.com/Kinvy66/Notes/blob/master/MachineLearning/01_ML-Base.md)
+* [02_DecisionTree.md](https://gitee.com/Kinvy66/Notes/blob/master/MachineLearning/02_DecisionTree.md)
 
 
 
