@@ -336,7 +336,121 @@ int main()
 
   在上述代码中，如果T的数据类型传入的是像Person这样的自定义数据类型，也无法正常运行
 
+  因此C++为了解决这种问题，提供模板的重载，可以为这些特定的类型提供具体化的模板
 
+  **示例：**
+
+  ```c++
+  #include <iostream>
+  #include <string> 
+  using namespace std;
+  
+  class Person
+  {
+  public:
+  	Person(string name, int age): m_name(name),m_age(age) {}
+   
+  	string m_name;
+  	int m_age;
+  };
+  
+  //普通函数模板
+  template<class T>
+  bool my_compare(T& a, T& b)
+  {
+  	if (a == b) {
+  		return true;		
+  	}
+  	else {
+  		return false;
+  	}
+  }
+  
+  //利用具体化Person的版本实现代码，具体化优先调用
+  template<> bool my_compare(Person& p1, Person& p2)
+  {
+  	if (p1.m_age == p2.m_age && p1.m_name == p2.m_name) {
+  		return true;
+  	}
+  	else {
+  		return false;
+  	}
+  }
+  
+  void test01()
+  {
+  	int a = 10;
+  	int b = 20;
+  
+  	//内置数据类型可以直接使用通用的函数模板
+  	bool ret = my_compare(a, b);
+  	if (ret) {
+  		cout << "a == b" << endl;
+  	}
+  	else {
+  		cout << "a != b" << endl;
+  	}
+  }
+  
+  void test02()
+  {
+  	Person p1("tom", 10);
+  	Person p2("tom", 10);
+  	//自定义数据类型，不会调用普通的函数模板
+  	//可以创建具体的Person数据类型的模板，用于特殊处理这个类型
+  	bool ret = my_compare(p1, p2);
+  	if (ret) {
+  		cout << "p1 == p2" << endl;
+  	}
+  	else {
+  		cout << "p1 != p2" << endl;
+  	}
+  }
+  
+  int main()
+  {
+  	test01();
+  
+  	test02();
+  	
+  	system("pause");
+  
+  	return 0;
+  }
+  ```
+
+  > 总结：
+  >
+  > * 利用具体化的模板，可以解决自定义类型的通用化
+  > * 学习模板并不是为了写模板，而是在STL能够运用系统提供的模板
+
+
+
+
+
+
+
+### 1.3 类模板
+
+#### 1.3.1  类模板语法
+
+类模板作用：
+
+* 建立一个通用类，类中的成员 数据类型可以不具体指定，用一个虚拟的类型来代表
+
+**语法：**
+
+```c++
+template<typename T>
+//类
+```
+
+
+
+**示例：**
+
+```c++
+```
 
 
 
