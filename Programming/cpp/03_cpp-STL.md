@@ -450,6 +450,42 @@ template<typename T>
 **示例：**
 
 ```c++
+#include <iostream>
+#include <string> 
+using namespace std;
+
+template<class NameType, class AgeType>
+class Person
+{
+public:
+	Person(NameType name, AgeType age)
+		:m_name(name),m_age(age) {}
+	void show_person()
+	{
+		cout << "name: " << this->m_name << 
+			" age: " << this->m_age << endl;
+	}
+
+public:
+	NameType m_name;
+	AgeType m_age;
+};
+
+void test01()
+{
+	//指定NameType为string ，AgeType为int类型
+	Person<string, int>p1("jack", 99);
+	p1.show_person();
+}
+
+int main()
+{
+	test01();
+	
+	system("pause");
+
+	return 0;
+}
 ```
 
 
