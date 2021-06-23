@@ -502,11 +502,114 @@ int main()
 **示例：**
 
 ```c++
+#include <iostream>
+#include <string> 
+using namespace std;
+
+template<class NameType, class AgeType = int>
+class Person
+{
+public:
+	Person(NameType name, AgeType age)
+		:m_name(name),m_age(age) {}
+	void show_person()
+	{
+		cout << "name: " << this->m_name << 
+			" age: " << this->m_age << endl;
+	}
+
+public:
+	NameType m_name;
+	AgeType m_age;
+};
+
+void test01()
+{
+	//指定NameType为string ，AgeType有默认的类型，可以不指定
+	Person<string>p1("jack", 99);
+	p1.show_person();
+}
+
+int main()
+{
+	test01();
+	
+	system("pause");
+
+	return 0;
+}
 ```
 
 
 
+#### 1.3.3  类模板中成员函数创建时机
 
+类模板中成员和普通类中成员函数创建时机是有区别的：
+
+* 普通类的成员函数一开始就可以创建
+* 类模板中的成员函数在调用时才创建
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string> 
+using namespace std;
+
+class Person1
+{
+public:
+	void showPerson1()
+	{
+		cout << "Person1 show" << endl;
+	}
+};
+
+class Person2
+{
+public:
+	void showPerson2()
+	{
+		cout << "Perso2 show" << endl;
+	}
+};
+
+template<class T>
+class MyClass
+{
+public:
+	T obj;
+
+	//类模板中的成员函数，并不是一开始就创建的，而是在模板调用时再生成
+
+	void fun1() { obj.showPerson1(); }
+	void fun2() { obj.showPerson2(); }
+
+};
+
+void test01()
+{
+	MyClass<Person1> m;
+	m.fun1();
+
+	//m.fun2();	//编译出错，说明函数调用才会去创建成员函数
+}
+
+int main()
+{
+	test01();
+	
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+#### 1.3.4  类模板对象做函数参数
 
 
 

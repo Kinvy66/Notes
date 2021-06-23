@@ -202,9 +202,90 @@ public class Demo03DataType {
 
   > 基本语法和C/C++一致
 
+* `switch-case`
 
 
 
+### 7.3  循环接
+
+* `for`
+
+
+
+* `while` , 	`do-while`
+
+
+
+
+
+
+
+## 8. 方法
+
+### 8.1  方法定义
+
+> 语法： 修饰符  返回值类型   方法名(参数列表) { 语句 }
+
+
+
+### 8.2 方法的重载
+
+==和C++中的方法重载一致==
+
+
+
+## 9.  数组
+
+### 9.1  数组的定义
+
+* 动态的初始化
+
+  ```java
+  public class Demo05Array {
+      public static void main(String[] args) {
+          // 1.动态初始化，指定数组的长度
+          int[] array1 = new int[10];
+          
+  
+          // 2.静态初始，根据写出的元素个数自动推导
+          int[] array2 = new int[] { 1, 4, 29 };
+  
+          // 3.省略的格式
+          int[] array3 = { 1, 4, 6 };
+      }
+  
+  }
+  
+  ```
+
+  
+
+### 9.2  数组访问
+
+```java
+public class Demo05Array {
+    public static void main(String[] args) {
+        int[] array = new int[] { 1, 4, 29 };
+
+        System.out.println(array);      //打印的是数组內存地址哈希值
+        System.out.println(array[1]);
+    }
+
+}
+
+```
+
+
+
+### 9.3 Java的内存划分
+
+Java的内存划分为5个部分：
+
+* **栈(Stack)** : 存放的都是方法中的局部变量，局部变量， 方法的参数或者方法内部的变量
+* **堆(Heap)**:  凡是new出来的东西，都是在堆中
+* **方法区(Method Area)** : 存储 `.class` 相关信息，包含方法的信息
+* **本地方法栈(Native Method Stack)**:  与操作系统相关
+* **寄存器(pc Register)**: 与CPU相关
 
 
 
