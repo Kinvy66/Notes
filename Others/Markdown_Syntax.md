@@ -251,13 +251,14 @@ __加粗2__
 
 
 
-## 5. 插入图片，超链接
+## 5. 插入图片，超链接，emoji
 
 语法：
 
 ```markdown
 ![图片名称](图片路径)
 [百度](https://www.baidu.com)
+:smile:
 ```
 
 显示效果：
@@ -265,11 +266,11 @@ __加粗2__
 <img src="https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/20210623215312.png" alt="image-20210623215312297" style="zoom:50%;" />
 [百度](https://www.baidu.com)
 
+:smile:
 
 
 
-
-
+> 注：[emoji列表](https://www.webfx.com/tools/emoji-cheat-sheet/)
 
 ## 6. 代码块，流程图
 
