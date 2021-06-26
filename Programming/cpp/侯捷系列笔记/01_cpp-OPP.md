@@ -174,7 +174,7 @@ Complex (double r = 0, double i = 0)
 class complex
 {
 public:
-    complex(double r = -, double i = 0)
+    complex(double r = 0, double i = 0)
         : re(r), im(i) {}
 
     int func(const complex& pragma)
