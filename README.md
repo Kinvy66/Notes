@@ -26,8 +26,18 @@
 
 ### 1.C/C++
 
+#### 1.1 [黑马教程](https://www.bilibili.com/video/BV1et411b73Z)
+
 * [01_cpp-Base.md](https://gitee.com/Kinvy66/Notes/blob/master/Programming/cpp/01_cpp-Base.md)
 * [02_cpp-OOP.md](https://gitee.com/Kinvy66/Notes/blob/master/Programming/cpp/02_cpp-OOP.md)
+* [03_cpp-STL.md](https://gitee.com/Kinvy66/Notes/blob/master/Programming/cpp/03_cpp-STL.md)
+
+
+
+#### 1.2  侯捷系列
+
+* [01_cpp-OPP.md](https://gitee.com/Kinvy66/Notes/blob/master/Programming/cpp/%E4%BE%AF%E6%8D%B7%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/01_cpp-OPP.md)
+* [02_cpp-II.md](https://gitee.com/Kinvy66/Notes/blob/master/Programming/cpp/%E4%BE%AF%E6%8D%B7%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/02_cpp-II.md)
 
 ### 2.Java
 
