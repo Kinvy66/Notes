@@ -214,8 +214,7 @@ sudo apt install rar
    >创建文件的步骤如下，首先 将需要压缩的文件打包 `tar cvf xxx.tar files`, 然后再对打包文件进行压缩 `xz -z xxx.tar`, 这样我们就可以得到一个打包之后的压缩文件了。
    >
    >使用 `xz` 工具压缩文件的时候需要添加参数 `-z`
-   >
-
+   
    ```shell
    # 语法:
    # 第一步
@@ -224,9 +223,9 @@ sudo apt install rar
    $ xz -z xxx.tar
    
    ```
-
+   
    > 举例
-
+   
    ```shell
    # 将文件 onepiece.txt, robin.txt 和目录 get 打包到 all.tar 中
    $ tar cvf all.tar onepiece.txt robin.txt get/
