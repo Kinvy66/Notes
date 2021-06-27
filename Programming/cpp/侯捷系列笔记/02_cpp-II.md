@@ -89,3 +89,71 @@ explict Fraction(int num, int den = 1)
 
 ## 2. pointer-like classes, 智能指针
 
+TODO
+
+
+
+
+
+* `namespace`
+
+  
+
+
+
+
+
+## 3. template 
+
+### 3.1  class template
+
+```c++
+template <typename T>
+class complex
+{
+public:
+    complex(T r = 0, T i = 0)
+        : re(r), im(i) {}
+    complex &operator+=(const complex &);
+    T real() const { return re; } 
+    T imag() const { return im; }
+
+private:
+    T re, im;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
