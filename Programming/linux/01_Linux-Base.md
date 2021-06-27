@@ -2,6 +2,8 @@
 
 
 
+[教程](https://www.bilibili.com/video/BV13U4y1p7kB)
+
 ## 1.  Linux命令
 
 

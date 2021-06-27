@@ -43,7 +43,11 @@
 
 * [01_Java-Base.md](https://gitee.com/Kinvy66/Notes/blob/master/Programming/java/01_Java-Base.md)
 
-### 3.Python
+### 3. Linux
+
+* [01_Linux-Base.md](https://gitee.com/Kinvy66/Notes/blob/master/Programming/linux/01_Linux-Base.md)
+
+### 4.Python
 
 
 
@@ -61,6 +65,8 @@
 * [git-user-manual.md ](https://gitee.com/Kinvy66/Notes/blob/master/Others/git-user-manual.md)
 
 * [Typora+PicGo.md](https://gitee.com/Kinvy66/Notes/blob/master/Others/Typora+PicGo.md)
+
+* [Markdown_Syntax.md](https://gitee.com/Kinvy66/Notes/blob/master/Others/Markdown_Syntax.md)
 
   
 
