@@ -219,3 +219,39 @@ $$
 
 
 
+## 1. 深度学习简介
+
+1. **Fully Connect Feedforward Network （全连接前馈网络）**
+
+   <img src="https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/20210629162352.png" alt="image-20210629162352243" style="zoom:50%;" />
+
+   **Deep = Many hidden layers** 
+
+
+
+## 2. Backpropagation（反向传播）
+
+Backpropagation 是一种高效的计算梯度的方法
+
+
+
+1. Chain Rule（链式法则）
+
+   <img src="https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/20210629163902.png" alt="image-20210629163902437" style="zoom:50%;" />
+
+2. Backpropagation 
+
+   一个简单的实例
+
+   <img src="https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/20210629164049.png" alt="image-20210629164049088" style="zoom:50%;" />
+
+
+
+3. Forward Pass
+
+   <img src="https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/20210629164208.png" alt="image-20210629164208516" style="zoom:50%;" />
+
+4. Backward Pass
+
+   <img src="https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/20210629164330.png" alt="image-20210629164330056" style="zoom:50%;" />
+
