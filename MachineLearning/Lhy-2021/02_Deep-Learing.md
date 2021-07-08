@@ -60,13 +60,55 @@
 
 gradient为0的点统称为critical point，在critical point的时候需要判断是local minima 还是saddle point，因为local minima是不能继续减小的，而saddle point还是可以继续减小
 
+<img src="https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/20210703171610.png" alt="image-20210703171603560" style="zoom: 33%;" />
 
 
 
 
 
+**Tayler Series Approximation**
 
 
+
+* **判断critical point是那种情况**
+
+<img src="https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/20210703171921.png" alt="image-20210703171921244" style="zoom: 50%;" />
+
+以上是二次型理论
+
+
+
+
+
+## 3.  batch（批次）和momentum（动量）
+
+### 3.1  Batch
+
+在计算梯度时，不是将所有的数据都用来计算，而是把数据分为多个Batch
+
+<img src="https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/20210703174103.png" alt="image-20210703174103562" style="zoom:50%;" />
+
+
+
+### 3.2  momentum
+
+#### 3.2.1 （Vanilla）Gradient Descent--一般的梯度下降
+
+<img src="https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/20210703182414.png" alt="image-20210703182414789" style="zoom:50%;" />
+
+
+
+#### 3.2.2  Gradient Descent + Momentum
+
+<img src="https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/20210703182600.png" alt="image-20210703182559894" style="zoom:50%;" />
+
+ 
+
+
+
+
+
+## 4. 自动学习率调整（Learning Rate）
 
 
 

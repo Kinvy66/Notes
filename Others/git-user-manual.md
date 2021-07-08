@@ -200,5 +200,29 @@ CRLF：Carriage Return Line Feed 回车换行\r\n
 
 
 
+#### 生成密钥
 
+1. 查看是否有密钥：
+
+   ```shell
+   $ cd ~/.ssh		#没有的话，不会有这个文件
+   ```
+
+   
+
+2. 生成密钥
+
+   ```shell
+   $ ssh-keygen -t rsa
+   ```
+
+   
+
+3. 最后得到了两个文件：id_rsa和id_rsa.pub
+
+   ```shell
+   $ cat ~/.ssh/id_rsa.pub
+   ```
+
+   将这个文件内容复制到GitHub
 

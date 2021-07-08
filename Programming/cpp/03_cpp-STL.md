@@ -611,7 +611,649 @@ int main()
 
 #### 1.3.4  类模板对象做函数参数
 
+类模板实例化出对象，向函数传参
+
+三种传入方式：
+
+1. 指定传入的类型	--- 直接显示对象的数据模型
+2. 参数模板化           --- 将对象中的参数变为模板进行传递
+3. 整个类模板化       --- 将这个对象类型模板化进行传递
 
 
 
+**示例：**
+
+```c++
+#include <iostream>
+#include <string> 
+using namespace std;
+
+template<class NameType, class AgeType = int>
+class Person
+{
+public:
+	Person(NameType name, AgeType age)
+		: mName(name), mAge(age) {}
+
+	void showPerson()
+	{
+		cout << "name: " << this->mName << " Age: " << this->mAge << endl;
+	}
+
+public:
+	NameType mName;
+	AgeType mAge;
+
+};
+
+//1.指定传如的类型
+void printPerson1(Person<string, int>& p)
+{
+	p.showPerson();
+}
+
+void test01()
+{
+	Person<string, int> p("tom", 100);
+	printPerson1(p);
+}
+
+//2. 参数模板化
+template <class T1, class T2>
+void printPerson2(Person<T1, T2>& p)
+{
+	p.showPerson();
+	cout << "T1的类型为：" << typeid(T1).name() << endl;
+	cout << "T2的类型为：" << typeid(T2).name() << endl;
+
+}
+
+void test02()
+{
+	Person<string, int> p("jack", 90);
+	printPerson2(p);
+}
+
+//3.整个类模板化
+template<class T>
+void printPerson3(T& p)
+{
+	cout << "T 的类型为： " << typeid(T).name() << endl;
+	p.showPerson();
+}
+
+void test03()
+{
+	Person<string, int>p("alice", 30);
+	printPerson3(p);
+}
+
+int main()
+{
+	test01();
+	test02();
+	test03();
+
+	system("pause");
+
+	return 0;
+}
+
+
+```
+
+
+
+#### 1.3.5  类模板与继承
+
+当类模板碰到继承，需要注意一下几点：
+
+* 当子类继承的父类是一个类模板时，子类在声明的时候，要指出父类中T的类型
+* 如果不指定，编译器无法给子类分配内存
+* 如果想灵活指定出父类中T的类型，子类也需变为类模板
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string> 
+using namespace std;
+
+template<class T>
+class Base
+{
+	T m;
+};
+
+//class Son:public Base  //错误，c++编译器需要给子类分配内存，必须知道父类中T的类型才可以向下继承
+class Son : public Base<int>
+{
+
+};
+
+void test01()
+{
+	Son c;
+}
+
+//类模板继承类模板，可以用T2指定父类中的T类型
+template<class T1, class T2>
+class Son2 : public Base<T2>
+{
+public:
+	Son2()
+	{
+		cout << typeid(T1).name() << endl;
+		cout << typeid(T2).name() << endl;
+	}
+};
+
+void test02()
+{
+	Son2<int, char> child1;
+}
+
+int main()
+{
+	test01();
+	test02();
+
+	system("pause");
+
+	return 0;
+}
+
+
+```
+
+
+
+#### 1.3.6 类模板成员函数类外实现
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string> 
+using namespace std;
+
+//类模板成员函数类外实现
+template <class T1, class T2>
+class Person 
+{
+public:
+	//成员函数类内声明
+	Person(T1 name, T2 age);
+	void showPerson();
+
+public:
+	T1 mName;
+	T2 mAge;
+
+};
+
+//构造函数 类外实现
+template<class T1, class T2>
+Person<T1, T2>::Person(T1 name, T2 age)
+{
+	this->mAge = age;
+	this->mName = name;
+}
+
+//成员函数 类外实现
+template<class T1, class T2>
+void Person<T1, T2>::showPerson()
+{
+	cout << "Name:" << this->mName << "   Age:" << this->mAge << endl;
+}
+
+
+
+void test01()
+{
+	Person<string, int>p("tom", 20);
+	p.showPerson();
+}
+
+
+
+int main()
+{
+	test01();
+
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+#### 1.3.7  类模板分文件编写
+
+类模板分文件编写的方式
+
+1. 直接包含.cpp源文件
+2. 将声明和实现写到同一个文件中，并更改后缀名为.hpp, ==hpp是约定的名称，并不是强制的==
+
+
+
+
+
+## 2. STL 初识
+
+
+
+STL 从广义上分为： **容器(container),算法(algorithm),迭代器(iterator)**
+
+容器和算法之间通过迭代器进行无缝连接。
+
+
+
+STL大体分为六大组件,分别是容器，算法，迭代器，仿函数，适配器，空间配置
+
+1. 容器：各种数据结构：如 vector，list，deque，set，map等，用来存放数据
+2. 算法：各种常用的算法，如sort，find，copy，for_each等
+3. 迭代器：扮演类容器与算法之间的胶合剂
+4. 仿函数：行为类似函数，可作为算法的某种策略
+5. 适配器：一种用来修饰容器或者仿函数或迭代器接口的东西
+6. 空间配置器：负责空间的配置和管理
+
+
+
+迭代器种类：
+
+| 种类           | 功能                                                   | 支持运算                                                |
+| -------------- | ------------------------------------------------------ | ------------------------------------------------------- |
+| 输入迭代器     | 对数据的只读访问                                       | 只读， `++` 、`==` 、`!=`                               |
+| 输出迭代器     | 对数据只写访问                                         | 只写，`++`                                              |
+| 前向迭代器     | 读写操作，并能向前推进迭代器                           | 读写，`++`、`==`、 `!=`                                 |
+| 双向迭代器     | 读写操作，并能向前向后操作                             | 读写，`++`、`--`                                        |
+| 随机访问迭代器 | 读写操作，可以跳跃的方式访问任意数据，功能最强的迭代器 | 读写，`++`、`--`、`[n]`、`-n` 、`<` 、`<=` 、`>` 、`>=` |
+
+
+
+### 2.1  容器算法迭代器初识
+
+以`vector`为例，初步了解容器，算法和迭代器
+
+
+
+#### 2.1.1  vector存放内置数据类型
+
+容器：`vector`
+
+算法：`for_each`
+
+迭代器：`vector<int>::iterator`
+
+
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string> 
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+void myPrint(int val)
+{
+	cout << val << endl;
+}
+
+void test01()
+{
+	//创建vector容器对象，并且通过模板参数指定容器中存放的数据类型
+	vector<int> v;
+	//向容器中放数据
+	v.push_back(10);
+	v.push_back(20);
+	v.push_back(20);
+	v.push_back(40);
+
+	//每一个容器都有自己的迭代器，迭代器是用来遍历容器中的元素
+	//v.begin() 返回迭代器，这个迭代器指向容器中第一个数据
+	//v.end() 返回迭代器，这个迭代器指向容器元素最后一个元素的下一个位置
+	//vector<int>::iterator  拿到vector<int> 这种容器的迭代器类型
+
+	vector<int>::iterator pBegin = v.begin();
+	vector<int>::iterator pEnd = v.end();
+
+	//第一种遍历方式：
+	while (pBegin != pEnd) {
+		cout << *pBegin << endl;
+		pBegin++;
+	}
+	cout << endl;
+
+	//第二种遍历方式
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << endl;
+	}
+	cout << endl;
+
+	//第三种遍历方式
+	for_each(v.begin(), v.end(), myPrint);
+
+}
+
+int main()
+{
+	test01();
+
+
+	system("pause");
+
+	return 0;
+}
+
+
+```
+
+
+
+> vector也可以存放自定义数据类型
+>
+> vector可以嵌套容器，例如`vector<vector<int>>` (c++11)
+
+
+
+
+
+
+
+## 3. 常用容器
+
+### 3.1 string 容器
+
+string 是C++风格的字符串，而string本质是一个类
+
+**string和char*的区别：**
+
+* char* 是一个指针
+* string 是一个类，类内部封装了char* ,管理这个字符串，是一个char*容器
+
+string管理char*所分配的内存，不要担心复制越界和取值越界等，由类内部负责
+
+
+
+#### 3.1.1 string的构造函数
+
+构造函数原型：
+
+* `string();` 										创建一个空字符串
+* `string(const char* s);`        使用字符串s初始化
+* `string(const string& str);`   使用一个string对象初始化另一个string对象
+* `string(int n, char c);`           使用n个字符串c初始化
+
+**示例：**
+
+```c++
+#include <iostream>
+#include <string> 
+
+using namespace std;
+
+//string构造
+void test01()
+{
+	string s1; //创建空字符串，调用无参构造函数
+	cout << "str1 = " << s1 << endl;
+	const char* str = "hello world";
+	string s2(str); //把c_string转换成了string
+	cout << "str2 = " << s2 << endl;
+	string s3(s2); //调用拷贝构造函数
+	cout << "str3 = " << s3 << endl;
+	string s4(10, 'a');
+	cout << "str3 = " << s3 << endl;
+}
+int main() 
+{
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+```
+
+
+
+
+
+#### 3.1.2 string 赋值操作
+
+给string字符串进行赋值
+
+赋值的函数原型：
+
+* `string& operator=(const char* s);` //char*类型字符串 赋值给当前的字符串
+* `string& operator=(const string &s);` //把字符串s赋给当前的字符串
+* `string& operator=(char c);` //字符赋值给当前的字符串
+* `string& assign(const char *s);` //把字符串s赋给当前的字符串
+* `string& assign(const char *s, int n);` //把字符串s的前n个字符赋给当前的字符串
+* `string& assign(const string &s);` //把字符串s赋给当前字符串
+* `string& assign(int n, char c);` //用n个字符c赋给当前字符串
+
+
+
+
+
+
+
+#### 3.1.3 string字符串拼接
+
+实现在字符串末尾拼接字符串
+
+**函数原型：**
+
+* `string& operator+=(const char* str);` //重载+=操作符
+* `string& operator+=(const char c);` //重载+=操作符
+* `string& operator+=(const string& str);` //重载+=操作符
+* `string& append(const char *s);` //把字符串s连接到当前字符串结尾
+* `string& append(const char *s, int n);` //把字符串s的前n个字符连接到当前字符串结尾
+* `string& append(const string &s);` //同operator+=(const string& str)
+* `string& append(const string &s, int pos, int n);` //字符串s中从pos开始的n个字符连接到字符串结尾
+
+
+
+#### 3.1.4 string查找和替换
+
+查找：查找指定字符串是否存在
+替换：在指定的位置替换字符串
+
+**函数原型：**
+
+* `int find(const string& str, int pos = 0) const;` //查找str第一次出现位置,从pos开始查找
+* `int find(const char* s, int pos = 0) const;` //查找s第一次出现位置,从pos开始查找
+* `int find(const char* s, int pos, int n) const;` //从pos位置查找s的前n个字符第一次位置
+* `int find(const char c, int pos = 0) const;` //查找字符c第一次出现位置
+* `int rfind(const string& str, int pos = npos) const;` //查找str最后一次位置,从pos开始查找
+* `int rfind(const char* s, int pos = npos) const;` //查找s最后一次出现位置,从pos开始查找
+* `int rfind(const char* s, int pos, int n) const;` //从pos查找s的前n个字符最后一次位置
+* `int rfind(const char c, int pos = 0) const;` //查找字符c最后一次出现位置
+* `string& replace(int pos, int n, const string& str);` //替换从pos开始n个字符为字符串str
+* `string& replace(int pos, int n,const char* s);` //替换从pos开始的n个字符为字符串s
+
+
+
+> 总结：
+>
+> * find查找是从左往后，rfind从右往左
+> * find找到字符串后返回查找的第一个字符位置，找不到返回-1
+> * replace在替换时，要指定从哪个位置起，多少个字符，替换成什么样的字符串
+
+
+
+
+
+#### 3.1.5 string字符串比较
+
+字符串之间的比较
+
+* 比较方式：
+  字符串比较是按字符的ASCII码进行对比
+  = 返回 0
+
+  \> 返回 1
+
+  < 返回 -1
+
+**函数原型：**
+
+* `int compare(const string &s) const;` //与字符串s比较
+* `int compare(const char *s) const;` //与字符串s比较
+
+
+
+
+
+
+
+#### 3.1.6 string字符存取
+
+string中单个字符存取方式有两种
+
+* `char& operator[](int n);` //通过[]方式取字符
+* `char& at(int n);` //通过at方法获取字符
+
+
+
+
+
+#### 3.1.7 string插入和删除
+
+对string字符串进行插入和删除字符操作
+**函数原型：**
+
+* `string& insert(int pos, const char* s);` //插入字符串
+* `string& insert(int pos, const string& str);` //插入字符串
+* `string& insert(int pos, int n, char c);` //在指定位置插入n个字符c
+* `string& erase(int pos, int n = npos);` //删除从Pos开始的n个字符
+
+
+
+
+
+
+
+#### 3.1.8 string子串
+
+从字符串中获取想要的子串
+**函数原型：**
+
+* `string substr(int pos = 0, int n = npos) const;` //返回由pos开始的n个字符组成的字符串
+
+
+
+
+
+
+
+### 3.2 vector容器
+
+vector数据结构和数组非常相似，也称为单端数组
+**vector与普通数组区别：**
+
+* 不同之处在于数组是静态空间，而vector可以动态扩展
+
+**动态扩展：**
+
+* 并不是在原空间之后续接新空间，而是找更大的内存空间，然后将原数据拷贝新空间，释放原空间
+* vector容器的迭代器是支持随机访问的迭代器
+
+
+
+
+
+#### 3.2.1 vector 构造函数
+
+创建vector容器
+**函数原型：**
+
+* `vector<T> v;` //采用模板实现类实现，默认构造函数
+* `vector(v.begin(), v.end());` //将v[begin(), end())区间中的元素拷贝给本身。
+* `vector(n, elem);` //构造函数将n个elem拷贝给本身。
+* `vector(const vector &vec);` //拷贝构造函数。
+
+
+
+
+
+#### 3.2.2 vector赋值操作
+
+给vector容器进行赋值
+**函数原型：**
+
+* `vector& operator=(const vector &vec);` //重载等号操作符
+* `assign(beg, end);` //将[beg, end)区间中的数据拷贝赋值给本身。
+* `assign(n, elem);` //将n个elem拷贝赋值给本身。
+
+
+
+#### 3.2.3 vector容量和大小
+
+**功能描述：**
+
+* 对vector容器的容量和大小操作
+
+**函数原型：**
+
+* empty(); //判断容器是否为空
+
+* capacity(); //容器的容量
+
+* size(); //返回容器中元素的个数
+
+* resize(int num); //重新指定容器的长度为num，若容器变长，则以默认值填充新位置。
+
+  //如果容器变短，则末尾超出容器长度的元素被删除。
+
+* resize(int num, elem); //重新指定容器的长度为num，若容器变长，则以elem值填充新位置。
+
+  //如果容器变短，则末尾超出容器长度的元素被删除
+
+
+
+
+
+
+
+#### 3.2.4 vector插入和删除
+
+**功能描述：**
+
+* 对vector容器进行插入、删除操
+
+**函数原型：**
+
+* `push_back(ele);` //尾部插入元素ele
+* `pop_back();` //删除最后一个元素
+* `insert(const_iterator pos, ele);` //迭代器指向位置pos插入元素ele
+* `insert(const_iterator pos, int count,ele);` //迭代器指向位置pos插入count个元素ele
+* `erase(const_iterator pos);` //删除迭代器指向的元素
+* `erase(const_iterator start, const_iterator end);` //删除迭代器从start到end之间的元素
+* `clear();` //删除容器中所有元素
+
+
+
+
+
+#### 3.2.5 vector 数据存取
+
+**功能描述：**
+
+* 对vector中的数据的存取操作
+
+**函数原型：**
+
+* `at(int idx);` //返回索引idx所指的数据
+* `operator[];` //返回索引idx所指的数据
+* `front();` //返回容器中第一个数据元素
+* `back();` //返回容器中最后一个数据元素
 
