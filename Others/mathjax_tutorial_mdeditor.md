@@ -250,13 +250,14 @@ MathJax 针对任意元素均提供从小至大 `\tiny` `\Tiny` `\scriptsize` `\
 
 ### (1)．关系运算符
 
-|输入|显示|输入|显示|输入|显示|输入|显示|
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-|\pm|$\pm$|\times|$\times$|\div|$\div$|\mid|$\mid$|
-|\nmid|$\nmid$|\cdot|$\cdot$|\circ|$\circ$|\ast|$\ast$|
-|\bigodot|$\bigodot$|\bigotimes|$\bigotimes$|\bigoplus|$\bigoplus$|\leq|$\leq$|
-|\geq|$\geq$|\neq|$\neq$|\approx|$\approx$|\equiv|$\equiv$|
-|\sum|$\sum$|\prod|$\prod$|\coprod|$\coprod$|\backslash|$\backslash$|
+|输入|显示|输入|显示|输入|显示|
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|\pm|$\pm$|\times|$\times$|\div|$\div$|
+|\nmid|$\nmid$|\cdot|$\cdot$|\circ|$\circ$|
+|\bigodot|$\bigodot$|\bigotimes|$\bigotimes$|\bigoplus|$\bigoplus$|
+|\geq|$\geq$|\neq|$\neq$|\approx|$\approx$|
+|\sum|$\sum$|\prod|$\prod$|\coprod|$\coprod$|
+|\simeq|$\simeq$|\sim|$\sim$|\asymp|$\asymp$|
 
 ### (2)．集合运算符
 

@@ -93,3 +93,26 @@ Debian 默认不带命令补全的插件
 
    
 
+## 4. Jupyter设置主题
+
+安装主题
+
+```shell
+$ pip install jupyterthemes
+```
+
+查看可用主题
+
+```shell
+$ jt -l
+$ jt -r  #恢复默认
+```
+
+更换主题，[详细参数设置](https://github.com/dunovank/jupyter-themes)
+
+```shell
+jt -t grade3 -f source -fs 12 -cellw 90% -ofs 11 -dfs 11 -T -N
+```
+
+
+
