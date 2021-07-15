@@ -2,13 +2,59 @@
 
 
 
-## 1. ubuntu 安装gcc,g++
+## 1. ubuntu 安装初始环境配置
 
-```shell
-sudo apt install build-essential 
-```
+1. 换源 Ubuntu20.04源,  `\etc\apt\sources.list`
 
+   ```shell
+   #阿里源
+   deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+   deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+   deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+   deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+   deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+   
+   #中科大源
+   deb https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse
+   deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse
+   deb https://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+   deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+   deb https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+   deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+   deb https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+   deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+   deb https://mirrors.ustc.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+   deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+   
+   #163源
+   deb http://mirrors.163.com/ubuntu/ focal main restricted universe multiverse
+   deb http://mirrors.163.com/ubuntu/ focal-security main restricted universe multiverse
+   deb http://mirrors.163.com/ubuntu/ focal-updates main restricted universe multiverse
+   deb http://mirrors.163.com/ubuntu/ focal-proposed main restricted universe multiverse
+   deb http://mirrors.163.com/ubuntu/ focal-backports main restricted universe multiverse
+   deb-src http://mirrors.163.com/ubuntu/ focal main restricted universe multiverse
+   deb-src http://mirrors.163.com/ubuntu/ focal-security main restricted universe multiverse
+   deb-src http://mirrors.163.com/ubuntu/ focal-updates main restricted universe multiverse
+   deb-src http://mirrors.163.com/ubuntu/ focal-proposed main restricted universe multiverse
+   deb-src http://mirrors.163.com/ubuntu/ focal-backports main restricted universe multiverse
+   
+   ```
 
+2. 基础软件安装
+
+   ```shell
+   $sudo apt-get update		#更新源
+   $sudo apt-get upgrade		#更新软件
+   $sudo apt-get install openssh-server	#安装ssh
+   $sudo apt install build-essential 		#安装gcc，g++
+   ```
+
+3. 其他软件安装
 
 ## 2. Debian  tab命令补全
 
@@ -33,6 +79,8 @@ Debian 默认不带命令补全的插件
 
 
 ## 3. Unix环境高级编程（第三版）环境配置
+
+系统： wsl2 ubuntu18
 
 1. [下载源码](http://www.apuebook.com/src.3e.tar.gz)
 
