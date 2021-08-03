@@ -128,9 +128,9 @@ $$ \left. \frac{{\rm d}u}{{\rm d}x} \right| _{x=0} $$
 ```
 $$ \frac{a-1}{b-1} \quad or \quad {a+1 \over b+1} $$
 ```
-- 显示：$$ \frac{a-1}{b-1} \quad or \quad {a+1 \over b+1} $$
+- 显示：$$\frac{a-1}{b-1} \quad or \quad {a+1 \over b+1} $$
 
-当分式 **仅有两个字符时** 可直接输入 `\frac ab` 来快速生成一个 $\large\frac ab$ 。
+当分式 **仅有两个字符时** 可直接输入 `\frac ab` 来快速生成一个 $\large\frac ab$ 。 
 
 - 例子：
 ```
@@ -182,7 +182,7 @@ $$ xy \text{ with arrows:} \quad \overleftarrow{xy} \; \mid \; \overleftrightarr
 ```
 $$ \int_0^1 {x^2} \,{\rm d}x $$
 ```
-显示：$$ \int_0^1 {x^2} \,{\rm d}x $$
+显示：$$\int_0^1 {x^2} \,{\rm d}x$$
 
 本例中 `\,` 和 `{\rm d}` 部分可省略，但加入能使式子更美观，详见“[在字符间加入空格](#3在字符间加入空格)”及“[如何进行字体转换](#13如何进行字体转换)”。
 
@@ -226,6 +226,8 @@ $$ \sum_{i=1}^n \frac{1}{i^2} \quad and \quad \prod_{i=1}^n \frac{1}{i^2} \quad 
 |\tau|$\tau$|T|$T$|\upsilon|$\upsilon$|\Upsilon|$\Upsilon$|
 |\phi|$\phi$|\Phi|$\Phi$|\chi|$\chi$|X|$X$|
 |\psi|$\psi$|\Psi|$\Psi$|\omega|$\omega$|\Omega|$\Omega$|
+|||||||||
+|\ell|$\ell$|||||||
 
 **部分字母有变量专用形式，以 `\var-` 开头。**
 
@@ -258,7 +260,7 @@ MathJax 针对任意元素均提供从小至大 `\tiny` `\Tiny` `\scriptsize` `\
 |\geq|$\geq$|\neq|$\neq$|\approx|$\approx$|
 |\sum|$\sum$|\prod|$\prod$|\coprod|$\coprod$|
 |\simeq|$\simeq$|\sim|$\sim$|\asymp|$\asymp$|
-|\leq|$\leq$|||||
+|\leq|$\leq$|\coloneqq|$\coloneqq$|||
 |||||||
 |||||||
 
@@ -266,7 +268,7 @@ MathJax 针对任意元素均提供从小至大 `\tiny` `\Tiny` `\scriptsize` `\
 
 |输入|显示|输入|显示|输入|显示|
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|\emptyset|$\emptyset$|\in|$\in$|\notin|$\notin$|
+|\emptyset|$ \emptyset $|\in|$\in$|\notin|$\notin$|
 |\subset|$\subset$|\supset|$\supset$|\subseteq|$\subseteq$|
 |\supseteq|$\supseteq$|\cap|$\cap$|\cup|$\cup$|
 |\vee|$\vee$|\wedge|$\wedge$|\uplus|$\uplus$|
@@ -306,7 +308,7 @@ MathJax 针对任意元素均提供从小至大 `\tiny` `\Tiny` `\scriptsize` `\
 
 |输入|显示|输入|显示|输入|显示|
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|\hat{xy}|$\hat{xy}$|\widehat{xyz}|$\widehat{xyz}$|\bar{y}|$\bar{y}$|
+|\hat{xy}|$ \hat{xy} $|\widehat{xyz}|$\widehat{xyz}$|\bar{y}|$\bar{y}$|
 |\tilde{xy}|$\tilde{xy}$|\widetilde{xyz}|$\widetilde{xyz}$|\acute{y}|$\acute{y}$|
 |\breve{y}|$\breve{y}$|\check{y}|$\check{y}$|\grave{y}|$\grave{y}$|
 |\dot{x}|$\dot{x}$|\ddot{x}|$\ddot{x}$|\dddot{x}|$\dddot{x}$|
@@ -807,9 +809,9 @@ $$
 
 |分别使用 `circle` 和 `roundedbox` 包围的公式|使用 `box` 框住所有公式|
 |:--:|:--:|
-|$$
-\require{enclose}
-\begin{array}{c}
+||$$|
+|\require{enclose}||
+|\begin{array}{c}||
     \enclose{circle}{f(\top),\, f^2(\top),\, f^3(\top) \,\cdots\, f^n(\top)} \\
     \enclose{roundedbox}{f(\bot),\, f^2(\bot),\, f^3(\bot) \,\cdots\, f^n(\bot)} \\
 \end{array}
@@ -1070,8 +1072,8 @@ $$
 - 显示：
 |不适配[2ex]|适配[2ex]|
 |:--:|:--:|
-|$$
-f(n) = 
+||$$|
+|f(n) = ||
     \begin{cases}
         \frac{n}{2}, & \text{if $n$ is even} \\
         3n+1, & \text{if $n$ is odd} \\

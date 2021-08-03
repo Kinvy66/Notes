@@ -45,6 +45,64 @@
    
    ```
 
+   Ubuntu18
+
+   ```shell
+   ##中科大源
+   
+   deb https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse
+   deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse
+   deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+   deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+   deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+   deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+   deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+   deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+   deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+   deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+   
+   #阿里源
+   deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+   deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+   deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+   deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+   deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+   
+   #163
+   deb http://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse
+   deb http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse
+   deb http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse
+   deb http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse
+   deb http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse
+   deb-src http://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse
+   deb-src http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse
+   deb-src http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse
+   deb-src http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse
+   deb-src http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse
+   
+   #清华
+   deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
+   deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
+   deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+   deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+   deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+   deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+   deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+   deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+   deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+   deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+   
+   
+   
+   ```
+
+   
+
 2. 基础软件安装
 
    ```shell
@@ -163,4 +221,28 @@ jt -t grade3 -f source -fs 12 -cellw 90% -ofs 11 -dfs 11 -T -N
 ```
 
 
+
+
+
+## 5. git报错
+
+在clone或push时出现以下错误
+
+![image-20210718095331515](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210718095331515.png)
+
+原因：一般是这是因为服务器的SSL证书没有经过第三方机构的签署，所以才报错
+
+解决方式：解除ssl验证
+
+```shell
+$ git config --global http.sslVerify "false"
+```
+
+
+
+## 6. Anaconda 更新库
+
+```shell
+$conda update --all  #更新所有的库
+```
 

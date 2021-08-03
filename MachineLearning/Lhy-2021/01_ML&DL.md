@@ -169,7 +169,6 @@ $$
    L = \frac{1}{N}\sum_n e_n
    $$
    
-
 3. Optimization
 
    目标：$\theta^* = \underset{\theta}{arg\ min}\ L$
@@ -205,7 +204,6 @@ y = b+\sum_ic_i\ sigmoid(b_i+\sum_jw_{ij}x_j)\\
 \downarrow\\
 y=b+\sum_{2i}c_imax(0,b_i+\sum_jw_{ij}x_j)
 $$
-
 
 **Deep Learning**
 
@@ -254,4 +252,10 @@ Backpropagation 是一种高效的计算梯度的方法
 4. Backward Pass
 
    <img src="https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/20210629164330.png" alt="image-20210629164330056" style="zoom:50%;" />
+
+
+
+
+
+
 
