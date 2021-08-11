@@ -246,3 +246,9 @@ $ git config --global http.sslVerify "false"
 $conda update --all  #更新所有的库
 ```
 
+
+
+## 7. vscode输出框中文乱码
+
+变量名`PYTHONIOENCODING`，值设置为`UTF8`
+

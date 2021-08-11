@@ -8,7 +8,7 @@ selec 查询列表 from 表名;
 2. 查询的结果是一个虚拟的表发
 */
 
-use myemployees;
+use scott;
 
 # 1. 查询表中的单字段
 
