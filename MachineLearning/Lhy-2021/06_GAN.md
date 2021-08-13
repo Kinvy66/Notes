@@ -90,7 +90,7 @@
 
 ## 3. Theory behind GAN
 
-###  3.1 目标
+###  3.1  目标
 
 ![image-20210811102233873](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210811102233873.png)
 
@@ -106,11 +106,29 @@
 
   
 
-* **靠 Discrimination计算
+* **靠 Discrimination计算**
 
   ![image-20210811103339541](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210811103339541.png)
 
   > $E_{y\sim P_{data}}$​​ 表示的是从真实数据集采样的数据，等同于下式
 
   ![image-20210811103851725](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210811103851725.png)
+
+### Summary
+
+![image-20210813101021297](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210813101021297.png)
+
+
+
+## 4. Tips for GAN
+
+JS divergence的问题
+
+![image-20210813101725292](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210813101725292.png)
+
+
+
+
+
+### 1. Wasserstein  distance
 

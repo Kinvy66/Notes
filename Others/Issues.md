@@ -244,6 +244,8 @@ $ git config --global http.sslVerify "false"
 
 ```shell
 $conda update --all  #更新所有的库
+
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 
 ```
 
 
