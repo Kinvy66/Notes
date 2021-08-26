@@ -252,5 +252,24 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 ## 7. vscode输出框中文乱码
 
+### 1. Python代码
+
+添加环境变量
+
 变量名`PYTHONIOENCODING`，值设置为`UTF8`
+
+
+
+### 2. java代码
+
+在coderunner的插件配置文件 `settjing.json` 中添加如下配置
+
+```json
+"code-runner.executorMap": {
+"java": 
+"cd $dir && javac -encoding utf-8  $fileName && java -Dfile.encoding=UTF-8 $fileNameWithoutExt"
+    }
+```
+
+
 

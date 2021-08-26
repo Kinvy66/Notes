@@ -588,7 +588,7 @@ Makefile
 ```makefile
 # 这是一个完整的 makefile 文件
 calc:add.o  div.o  main.o  mult.o  sub.o
-        gcc  add.o  div.o  main.o  mult.o  sub.o -o calc
+	gcc  add.o  div.o  main.o  mult.o  sub.o -o calc
 
 ```
 
