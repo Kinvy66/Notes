@@ -43,7 +43,7 @@ double d = 4 + f; //调用 operator double() 将 f 转为 0.6
 
 
 
-### 1. 2non-explicit-one-argument ctor
+### 1. 2 non-explicit-one-argument ctor
 
 
 

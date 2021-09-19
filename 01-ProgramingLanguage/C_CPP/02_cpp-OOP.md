@@ -94,7 +94,7 @@ int main()
 
 **打印结果:**
 
-![image-20210530113103121](C:/Users/Kinvy/AppData/Roaming/Typora/typora-user-images/image-20210530113103121.png)
+![image-20210911174018295](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210911174018295.png)
 
 
 
@@ -1800,7 +1800,7 @@ int main()
 
 
 
-解决方式：将父类中国的析构函数改为**虚析构** 或者 **纯虚析构**
+解决方式：将父类中的析构函数改为**虚析构** 或者 **纯虚析构**
 
 
 

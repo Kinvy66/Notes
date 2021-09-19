@@ -1,14 +1,3 @@
----
-<span style="float: left; display: contents;"><i class="icon-download-alt icon-1x"></i> Markdown 源文件下载</summary> / 链接未知</span><span style="float: right; display: block;">本文固定链接 https://ericp.cn/cmd</span>
-# Cmd Markdown 公式指导手册
-
-<p style="margin-top: 100px"> </p>
-
--  新增内容：[戴帽符号](#7戴帽符号)
--  修补内容：[如何输入一个交换图表](#1如何输入一个交换图表) / [在字符间加入空格](#3在字符间加入空格)<span style="float: right; display: block;"><i class="icon-edit icon-1x"></i> Ver. 2020-10-03</span>
-
----
-
 > 本文为 MathJax 在 [Cmd Markdown](https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown) 环境下的常用语法指引。Cmd Markdown 编辑阅读器支持 $\LaTeX$ 编辑显示支持，例如：$\sum_{i=1}^n a_i=0$，访问 [MathJax](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference) 以参考更多使用方法。
 
 > 右键点击每一个公式，选择 **[Show Math As] → [TeX Commands]** 以查看该公式的命令详情。
@@ -300,9 +289,9 @@ MathJax 针对任意元素均提供从小至大 `\tiny` `\Tiny` `\scriptsize` `\
 
 |输入|显示|输入|显示|输入|显示|
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|\because|$\because$|\therefore|$\therefore$|\neg|$\neg$|
+|\because|$ \because$|\therefore|$\therefore$|\neg|$\neg$|
 |\forall|$\forall$|\exists|$\exists$|\not\subset|$\not\subset$|
-|\not<|$\not<$|\not>|$\not>$|\not=|$\not=$|
+|\not<|$ \not<$|\not>|$\not>$|\not=|$\not=$|
 
 ### (7)．戴帽符号
 
@@ -614,11 +603,11 @@ $$ f(n)= \begin{cases} n/2, & \text {if $n$ is even} \\ 3n+1, & \text{if $n$ is 
 \end{array}
 ```
 - 显示：
-\begin{array}{c|c}
+$$\begin{array}{c|c}
     \text{Spaces} & \text{Negative Space in Units} \\
     \hline \\
     \overbrace{a \! b}^{\text{\!}} \mid \underbrace{ab}_{\rm{default}} \mid \overbrace{a \, b}^{\text{\,}} \mid \underbrace{a \; b}_{\text{\;}} \mid \overbrace{a \quad b}^{\text{\quad}} \mid \underbrace{a \qquad b}_{\text{\qquad}} & \mathrm{N}\!\cdot\!\mathrm{m} \mid \mathrm{s}\!\cdot\!\mathrm{A} \mid \mathrm{kg}\!\cdot\!\mathrm{m}^2 \\ 
-\end{array}
+\end{array}$$
 
 一些常见的公式单位可表达如下：
 
@@ -666,7 +655,7 @@ $$ \mu_0=4\pi\times10^{-7} \ \left.\mathrm{\mathrm{T}\!\cdot\!\mathrm{m}}\middle
 \hline\end{array}
 ```
 - 显示：
-\begin{array}{|rrrrrrrr|}\hline
+  $$ \begin{array}{|rrrrrrrr|}\hline
     \verb+#000+ & \color{#000}{text} & & &
     \verb+#00F+ & \color{#00F}{text} & & \\
     & & \verb+#0F0+ & \color{#0F0}{text} &
@@ -675,8 +664,7 @@ $$ \mu_0=4\pi\times10^{-7} \ \left.\mathrm{\mathrm{T}\!\cdot\!\mathrm{m}}\middle
     \verb+#F0F+ & \color{#F0F}{text} & & \\
     & & \verb+#FF0+ & \color{#FF0}{text} &
     & & \verb+#FFF+ & \color{#FFF}{text} \\
-\hline\end{array}
-
+  \hline\end{array}$$
 - 例子：
 ```
 \begin{array}{|rrrrrrrr|}\hline
@@ -697,7 +685,7 @@ $$ \mu_0=4\pi\times10^{-7} \ \left.\mathrm{\mathrm{T}\!\cdot\!\mathrm{m}}\middle
 \hline\end{array}
 ```
 - 显示：
-\begin{array}{|rrrrrrrr|}\hline
+$$ \begin{array}{|rrrrrrrr|}\hline
     \verb+#000+ & \color{#000}{text} & \verb+#005+ & \color{#005}{text} & \verb+#00A+ & \color{#00A}{text} & \verb+#00F+ & \color{#00F}{text}  \\
     \verb+#500+ & \color{#500}{text} & \verb+#505+ & \color{#505}{text} & \verb+#50A+ & \color{#50A}{text} & \verb+#50F+ & \color{#50F}{text}  \\
     \verb+#A00+ & \color{#A00}{text} & \verb+#A05+ & \color{#A05}{text} & \verb+#A0A+ & \color{#A0A}{text} & \verb+#A0F+ & \color{#A0F}{text}  \\
@@ -712,7 +700,7 @@ $$ \mu_0=4\pi\times10^{-7} \ \left.\mathrm{\mathrm{T}\!\cdot\!\mathrm{m}}\middle
     \verb+#5F0+ & \color{#5F0}{text} & \verb+#5F5+ & \color{#5F5}{text} & \verb+#5FA+ & \color{#5FA}{text} & \verb+#5FF+ & \color{#5FF}{text}  \\
     \verb+#AF0+ & \color{#AF0}{text} & \verb+#AF5+ & \color{#AF5}{text} & \verb+#AFA+ & \color{#AFA}{text} & \verb+#AFF+ & \color{#AFF}{text}  \\
     \verb+#FF0+ & \color{#FF0}{text} & \verb+#FF5+ & \color{#FF5}{text} & \verb+#FFA+ & \color{#FFA}{text} & \verb+#FFF+ & \color{#FFF}{text}  \\
-\hline\end{array}
+\hline\end{array}$$
 
 ### (5)．添加删除线
 
@@ -954,13 +942,14 @@ $$
 \end{align}
 ```
 - 显示：
-\begin{align}
+
+  $$\begin{align}
     \sqrt{37} & = \sqrt{\frac{73^2-1}{12^2}} \\
               & = \sqrt{\frac{73^2}{12^2}\cdot\frac{73^2-1}{73^2}} \\ 
               & = \sqrt{\frac{73^2}{12^2}}\sqrt{\frac{73^2-1}{73^2}} \\
               & = \frac{73}{12}\sqrt{1-\frac{1}{73^2}} \\ 
               & \approx \frac{73}{12}\left(1-\frac{1}{2\cdot73^2}\right) \\
-\end{align}
+  \end{align}$$
 
 本例中每行公式的编号续自“[如何插入公式](#1如何插入公式)”中的自动编号公式\eqref{eq:sample} 。
 
@@ -977,11 +966,11 @@ $$
 \end{align}
 ```
 - 显示：
-\begin{align}
+  $$\begin{align}
     v + w & = 0  & \text{Given} \tag 1 \\
        -w & = -w + 0 & \text{additive identity} \tag 2 \\
    -w + 0 & = -w + (v + w) & \text{equations $(1)$ and $(2)$} \\
-\end{align}
+  \end{align}$$
 
 本例中第一、第二行的自动编号被 `\tag` 语句覆盖，第三行的编号为自动编号。
 
@@ -1078,13 +1067,13 @@ $$
         \frac{n}{2}, & \text{if $n$ is even} \\
         3n+1, & \text{if $n$ is odd} \\
     \end{cases}
-$$|$$
+$$
 f(n) = 
     \begin{cases}
         \frac{n}{2}, & \text{if $n$ is even} \\[2ex]
         3n+1, & \text{if $n$ is odd} \\
     \end{cases}
-$$|
+$$
 
 **一个 `[ex]` 指一个 "X-Height"，即 x 字母高度。可以根据情况指定多个 `[ex]`，如 `[3ex]`、`[4ex]` 等。**
 其实可以在任意换行处使用 `\\[2ex]` 语句，只要你觉得合适。
@@ -1109,13 +1098,13 @@ $$|
 \end{array}
 ```
 - 显示：
-\begin{array}{c|lcr}
+$$\begin{array}{c|lcr}
     n & \text{左对齐} & \text{居中对齐} & \text{右对齐} \\
     \hline
     1 & 0.24 & 1 & 125 \\
     2 & -1 & 189 & -8 \\
     3 & -20 & 2000 & 1+10i \\
-\end{array}
+\end{array}$$
 
 ## 2．如何输入一个嵌套的数组或表格
 
@@ -1230,11 +1219,11 @@ $$
 \end{cases}
 ```
 - 显示：
-\begin{cases}
+$$\begin{cases}
     a_1x+b_1y+c_1z=d_1 \\ 
     a_2x+b_2y+c_2z=d_2 \\ 
     a_3x+b_3y+c_3z=d_3 \\
-\end{cases}
+\end{cases}$$
 
 # 六、连分数使用参考
 
@@ -1417,12 +1406,12 @@ Don't use `\frac` in exponents or limits of integrals; it looks bad and can be c
 \end{array}
 ```
 - 显示：
-\begin{array}{cc}
+$$\begin{array}{cc}
     \mathrm{Bad} & \mathrm{Better} \\
     \hline \\
     \large e^{i\frac{\pi}2} \quad e^{\frac{i\pi}2}& \large e^{i\pi/2} \\[2ex]
     \int_{-\frac\pi2}^\frac\pi2 \sin x\,dx & \int_{-\pi/2}^{\pi/2}\sin x\,dx \\
-\end{array}
+\end{array}$$
 
 The `|` symbol has the wrong spacing when it is used as a divider, for example in set comprehensions. Use `\mid` instead:
 
@@ -1438,11 +1427,11 @@ The `|` symbol has the wrong spacing when it is used as a divider, for example i
 ```
 
 - 显示：
-\begin{array}{cc}
+$$\begin{array}{cc}
     \mathrm{Bad} & \mathrm{Better} \\
     \hline \\
     \{x|x^2\in\Bbb Z\} & \{x\mid x^2\in\Bbb Z\} \\
-\end{array}
+\end{array}$$
 
 For double and triple integrals, don't use `\int\int` or `\int\int\int`. Instead use the special forms `\iint` and `\iiint`:
 
@@ -1488,11 +1477,11 @@ Use `\,`, to insert a thin space before differentials; without this $\TeX$ will 
 ```
 
 - 显示：
-\begin{array}{cc}
+$$\begin{array}{cc}
     \mathrm{Bad} & \mathrm{Better} \\
     \hline \\
     \iiint_V f(x){\rm d}z {\rm d}y {\rm d}x & \iiint_{\boldsymbol{V}} f(x)\,{\rm d}z\,{\rm d}y\,{\rm d}x \\
-\end{array}
+\end{array}$$
 
 ---
 
@@ -1502,3 +1491,4 @@ Use `\,`, to insert a thin space before differentials; without this $\TeX$ will 
 
 Drafted & Translated by [Eric P.](https://ericp.cn)
 2015-10-02
+
