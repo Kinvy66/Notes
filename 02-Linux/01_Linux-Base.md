@@ -6,6 +6,16 @@
 
 ## 1.  Linux命令
 
+### 基础命令
+
+```shell
+$ du -h --max-depth=1   #查看文件夹下所有文件的大小
+```
+
+
+
+
+
 
 
 ### 1.1 重定向操作
@@ -51,7 +61,6 @@ echo helloworld >> tmp  #以追加的方式添加内容
    
    ```
    
-   
 
 
 
@@ -91,6 +100,23 @@ echo helloworld >> tmp  #以追加的方式添加内容
    $ tar jxvf part.tar.bz2 -C temp
    
    ```
+
+3. 打包压缩是排除某个文件或文件夹
+
+   假设在`~/test`目录下有这些文件
+
+   ![image-20210924092717298](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210924092717298.png)
+
+   如果打包是需要排除 `a` 文件夹则可以使用 `--exclude=dir(filename)`
+
+   ```shell
+   $ tar czvf test.tar.gz * --exclude=a			#在test目录下执行这个命令
+   $ tar cavf test.tar.gz tets --exclude=test/a	#在test的上级目录(~/)下执行
+   ```
+
+   
+
+
 
 
 
