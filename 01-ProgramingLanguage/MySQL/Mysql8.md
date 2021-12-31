@@ -75,13 +75,13 @@ net start mysql		#启动
 登录
 
 ```powershell
-mysql -u root -p   # 输入密码
+mysql -u root -p   # 输入密码 123456
 ```
 
 修改初始化
 
 ```powershell
-ALTER USER ‘root'@'localhost' IDENTIFIED WITH mysql_native_password BY ‘新密码';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密码';
 ```
 
 若要删除mysql，可执行命令

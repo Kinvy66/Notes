@@ -4,6 +4,8 @@
 
 本笔记转自[教程](https://www.bilibili.com/video/BV13U4y1p7kB)
 
+[Linux 教程 | 爱编程的大丙 (subingwen.cn)](https://subingwen.cn/linux/)
+
 ## 1.  Linux命令
 
 ### 基础命令
@@ -151,7 +153,7 @@ $ sudo apt install unzip	#解压缩
    $ zip all onepiece.txt robin.txt get/ -r
    ```
 
-   
+    
 
 2. **解压缩（.zip）**
 

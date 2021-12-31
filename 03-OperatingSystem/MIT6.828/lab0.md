@@ -1,8 +1,4 @@
-
-
 # MIT6.828 操作系统课程实验环境配置
-
-
 
 操作系统：Ubuntu-18.04.5-64bit
 
@@ -12,24 +8,18 @@
 
 环境配置 [参考](https://pdos.csail.mit.edu/6.828/2018/tools.html)
 
-
-
 ## 编译工具链
-
-
 
 ### 1.测试编译工具
 
 ```shell
-$ objdump -i
+$objdump -i
 ```
 
-![image-20210727123132004](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210727123132004.png)
-
-
+<img src="https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210727123132004.png" title="" alt="image-20210727123132004" data-align="center">
 
 ```shell
-$ gcc -m32 -print-libgcc-file-name 		#测试gcc
+$gcc -m32 -print-libgcc-file-name         #测试gcc
 ```
 
 上面这条命令是测试gcc的，一般系统是没有gcc的，需要安装
@@ -46,8 +36,6 @@ $sudo apt-get install -y build-essential gdb git vim
 $sudo apt-get install gcc-multilib
 ```
 
-
-
 ### 2. 编译安装工具链
 
 #### 2.1下载以下工具包
@@ -63,8 +51,6 @@ $sudo apt-get install gcc-multilib
 
 https://mirrors.sjtug.sjtu.edu.cn/gnu/gmp/gmp-5.0.2.tar.bz2
 
-
-
 #### 2.2 编译安装
 
 为了方便，将以上6个压缩包放在一个文件夹下 ，`~/download/mit6.828`
@@ -76,7 +62,7 @@ https://mirrors.sjtug.sjtu.edu.cn/gnu/gmp/gmp-5.0.2.tar.bz2
 > 以下的操作都是在 `~/download/mit6.828` 目录下
 
 1. 安装gmp-5.0.2
-
+   
    ```shell
    $tar xjf gmp-5.0.2.tar.bz2
    $cd gmp-5.0.2
@@ -85,19 +71,17 @@ https://mirrors.sjtug.sjtu.edu.cn/gnu/gmp/gmp-5.0.2.tar.bz2
    $sudo make install             
    $cd ..
    ```
-
+   
    逐条执行命令，每执行一条后，输出无 `error` 就可往下执行，后面几个安装包也是一样的
-
+   
    > 可能的错误是第3个命令，如果报错，执行以下命令，然后再次执行第3行命令
-
+   
    ```shell
    $sudo apt install m4
    ```
 
-   
-
 2. 安装mpfr-3.1.2
-
+   
    ```shell
    $tar xjf mpfr-3.1.2.tar.bz2
    $cd mpfr-3.1.2
@@ -107,10 +91,8 @@ https://mirrors.sjtug.sjtu.edu.cn/gnu/gmp/gmp-5.0.2.tar.bz2
    $cd ..
    ```
 
-
-
 3. 安装mpc-0.9
-
+   
    ```shell
    $tar xzf mpc-0.9.tar.gz
    $cd mpc-0.9
@@ -120,10 +102,8 @@ https://mirrors.sjtug.sjtu.edu.cn/gnu/gmp/gmp-5.0.2.tar.bz2
    $cd ..
    ```
 
-
-
 4. 安装binutils-2.21.1
-
+   
    ```shell
    $tar xjf binutils-2.21.1.tar.bz2
    $cd binutils-2.21.1
@@ -141,10 +121,8 @@ https://mirrors.sjtug.sjtu.edu.cn/gnu/gmp/gmp-5.0.2.tar.bz2
    #   i386...
    ```
 
-
-
 5. 安装gcc-core-4.6.4
-
+   
    ```shell
    $tar xjf gcc-core-4.6.4.tar.bz2
    $cd gcc-4.6.4
@@ -156,7 +134,7 @@ https://mirrors.sjtug.sjtu.edu.cn/gnu/gmp/gmp-5.0.2.tar.bz2
        --without-headers --enable-languages=c MAKEINFO=missing
    $make all-gcc
    $sudo make install-gcc         
-   $make all-target-libgcc		#可能会报错 [configure-target-libgcc] Error 1
+   $make all-target-libgcc        #可能会报错 [configure-target-libgcc] Error 1
    $sudo make install-target-libgcc   
    $cd ../..
    
@@ -168,29 +146,27 @@ https://mirrors.sjtug.sjtu.edu.cn/gnu/gmp/gmp-5.0.2.tar.bz2
    # COLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/i386-jos-elf/4.6.4/lto-wrapper
    # Target: i386-jos-elf
    ```
-
+   
    > 执行11行命令可能会报错，如果报错，执行以下命令，然后再次执行第11行命令
-
+   
    ```shell
    $export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib 
    ```
 
-   
-
 6. 安装gdb-7.3.1
-
+   
    ```shell
    $tar xjf gdb-7.3.1.tar.bz2
    $cd gdb-7.3.1
    $./configure --prefix=/usr/local --target=i386-jos-elf --program-prefix=i386-jos-elf- \
        --disable-werror
-   $make all			#可能的错误 no termcap library found
+   $make all            #可能的错误 no termcap library found
    $sudo make install         
    $cd ..
    ```
-
-   >可能报错的命令第5个，如果出现错误，执行以下命令，然后再执行该命令
-
+   
+   > 可能报错的命令第5个，如果出现错误，执行以下命令，然后再执行该命令
+   
    ```shell
    $wget http://ftp.gnu.org/gnu/termcap/termcap-1.3.1.tar.gz
    $tar -zxv -f termcap-1.3.1.tar.gz
@@ -200,12 +176,6 @@ https://mirrors.sjtug.sjtu.edu.cn/gnu/gmp/gmp-5.0.2.tar.bz2
    $sudo make install
    ```
 
-   
-
-
-
-
-
 ## 安装 QEMU
 
 ### 1. 安装工具包
@@ -213,10 +183,7 @@ https://mirrors.sjtug.sjtu.edu.cn/gnu/gmp/gmp-5.0.2.tar.bz2
 ```shell
 $sudo apt install libsdl1.2-dev libtool-bin libglib2.0-dev  libz-dev  libpixman-1-dev
 $sudo apt install python2
-
 ```
-
-
 
 ### 2. 下载qemu
 
@@ -225,8 +192,6 @@ qemu需要用6.828定制的
 ```shell
 $git clone https://github.com/mit-pdos/6.828-qemu.git qemu
 ```
-
-
 
 ### 3. 编译安装
 
@@ -239,7 +204,7 @@ $sudo make install
 可能的错误：
 
 1. 缺少一个头文件，错误如下
-
+   
    ```shell
    qga/commands-posix.c: In function ‘dev_major_minor’:
    qga/commands-posix.c:633:13: error: In the GNU C Library, "major" is defined
@@ -251,10 +216,8 @@ $sudo make install
             *devmajor = major(st.st_rdev);
                 ^~~~~~~~~~~~~~~~~~~~~~~~~~   
    ```
-
+   
    > 解决：在 qga/commands-posix.c文件中的 #include <sys/types.h> 下面增加#include <sys/sysmacros.h>即可
-
-
 
 ### 4.测试
 
@@ -269,4 +232,3 @@ $make qemu-nox
 测试成功
 
 ![image-20210727171159202](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210727171159202.png)
-

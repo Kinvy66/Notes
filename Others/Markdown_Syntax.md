@@ -300,7 +300,7 @@ __加粗2__
 语法： 代码块用 一对` ``` ` ，第一个 ` ``` ` 后面写使用的语言
 
 ```markdown
-​```c++
+```c++
 #include <iostream>
 using namespace std;
 
@@ -340,15 +340,15 @@ int main()
 
 和代码块一样
 
-```markdown
-​```mermaid
+````markdown
+```mermaid
 graph TD;
     A-->B;
     A-->C;
     B-->D;
     C-->D;
-​```
 ```
+````
 
 
 

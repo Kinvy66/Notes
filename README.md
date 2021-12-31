@@ -1,5 +1,3 @@
-
-
 # Notes
 
 个人笔记仓库
@@ -14,39 +12,20 @@ B站：[kinvy66的个人空间_哔哩哔哩](https://space.bilibili.com/10919971
 
 * 2021年9月11日  添加更新日志，文件重新分类，更新README
 
-
-
 ## TODO
 
 - [ ] 更新目录详细条目
-
-
 
 ## Catalog
 
 ### 1. ProgramingLanguage
 
-
-
 ### 2. Linux
-
-
 
 ### 3. OperatingSystem
 
-
-
 ### 4. MachineLearing
-
-
 
 ### 5. Paper
 
-
-
 ### Others
-
-
-
-
-
