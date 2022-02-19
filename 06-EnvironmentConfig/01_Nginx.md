@@ -26,7 +26,7 @@
 - 安装nginx
 
   ```shell
-  $ sudo apt install ngin
+  $ sudo apt install nginx
 
 
 

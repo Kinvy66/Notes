@@ -134,7 +134,7 @@
 
 ### ④创建测试用的jsp页面
 
-在webapp下创建success.jsp
+在webapp下创建success.jsp 
 
 ~~~~jsp
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>

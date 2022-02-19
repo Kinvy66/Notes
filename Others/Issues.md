@@ -260,6 +260,7 @@ $ conda activate flask-env	#激活进入环境
 $ pip install packge-name	#在环境中安装包
 $ conda deactivate 			#退出虚拟环境
 $ conda remove --name $your_env_name  $package_name   #删除环境
+conda remove --name d2l --all
 ```
 
 
@@ -287,6 +288,10 @@ $ conda remove --name $your_env_name  $package_name   #删除环境
   ```
 
   
+
+```shell
+$ pip install d2l -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
+```
 
 
 
