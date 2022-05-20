@@ -372,7 +372,7 @@ strlen(str);	//计算str的长度，结果是3，计算方式是遇到空字符�
 
 ```cpp
 //从 c到 c++   const char* ---> string
-//1. 使用字符串字面字初始化string类型，本章第二节
+//1. 使用字符串字面v初始化string类型，本章第二节
 string s3("value");		//s3是字面值 "value" 的副本，不包含最后的空字符
 string s3 = "value";	//同上
 //2. string 重载了 + 运算符，可以直接拼接， s1，s2是string类型

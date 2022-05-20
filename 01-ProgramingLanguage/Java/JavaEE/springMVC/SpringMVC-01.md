@@ -620,7 +620,7 @@ public class User {
 
 
 
-### 5.3 获取QueryString格式参数 
+### 5.3 获取QueryString格式参数
 
 ​	如果接口的参数是使用QueryString的格式的话，我们也可以使用SpringMVC快速获取参数。
 

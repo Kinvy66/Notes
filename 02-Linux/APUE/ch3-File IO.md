@@ -440,7 +440,9 @@ UNIX系统为这样的操作提供了一种原子操作方法，即在打开文�
 
   对于指定的文件描述符打印文件标志，运行测试
 
-  ![image-20210813175910565](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210813175910565.png)/home/kinvy/apue/ch1/04-shell.c /home/kinvy/apue/ch3/01_fcntl.c
+  ![image-20210813175910565](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20210813175910565.png)
+  
+  /home/kinvy/apue/ch1/04-shell.c /home/kinvy/apue/ch3/01_fcntl.c
 
 
 

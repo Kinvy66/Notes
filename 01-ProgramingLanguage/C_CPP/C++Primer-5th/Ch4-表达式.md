@@ -180,7 +180,7 @@ cast-name<type>(expression);
 
 其中`type`是转换的目标类型而 `expression` 是要转换的值。如果 `type` 是引用类型，则结果是左值。
 
- `cast-name` 是 `static_cast`、`dynamic_cast`、`const_cast`、`reinterpret_cast`
+- [ ] TODO : `cast-name` 是 `static_cast`、`dynamic_cast`、`const_cast`、`reinterpret_cast`
 
 
 

@@ -81,6 +81,10 @@
 
   ==active (running)== 表示Nginx在运行
 
+$$
+\mathcal{s}_t\in \mathcal{S}
+$$
+
 
 
 * 通过浏览器访问

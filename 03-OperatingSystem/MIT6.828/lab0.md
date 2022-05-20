@@ -226,7 +226,7 @@ $sudo make install
 $git clone https://pdos.csail.mit.edu/6.828/2018/jos.git lab
 $cd lab
 $make
-$make qemu-nox
+$make qemu-noxl
 ```
 
 测试成功

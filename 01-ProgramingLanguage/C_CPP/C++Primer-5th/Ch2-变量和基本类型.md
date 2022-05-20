@@ -43,7 +43,7 @@ b = 1;
 
 <span style="border:2px solid Red">C++11</span>  列表初始化
 
-```c++
+```cpp
 int val = 1;
 int val = {0};
 int val{0};
@@ -52,7 +52,7 @@ int val(0);
 
 使用 `{}` 来初始化变量，称为列表初始化，这种方式初始化变量，编译器化检查初始化的变量是否符号定义的变量的类型
 
-```c++
+```cpp
 long double pi = 3.14;
 int a{pi};	//错误，编译器会检查类型，无法通过编译
 ```

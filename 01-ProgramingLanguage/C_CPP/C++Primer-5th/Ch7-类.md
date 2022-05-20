@@ -60,7 +60,7 @@ class ClassName{
 类的接口（对外可以使用的函数，部分函数不是类的成员函数）
 
 - 一个 `isbn` 成员函数，用于返回对象的ISBN编号
-- 一个 `combine` 成员函数，用于将一个 Sales_data 对象加到拎一个对象上
+- 一个 `combine` 成员函数，用于将一个 Sales_data 对象加到另一个对象上
 - 一个 `avg_price`成员函数，用于返回售出数书籍的平均价格
 - 一个名为 `add` 的函数，指向两个Sales_data 对象的加法
 - 一个 `read` 函数，将数据从 istream 读入到 Sales_data 对象中
@@ -197,11 +197,11 @@ const Sales_data *const this = &c_total;	//正确
 
 
 
-> 总结：常函数只能调用被常对象调用，非常量对象既可以调用常量函数，也可以吃调用普通函数
+> 总结：常量对象只能调用常函数，非常量对象既可以调用常量函数，也可以调用普通函数
 
 
 
-以上内容比较抽象，建议结合2.4节内容理解，关于常函数还有部分的知识点，后面的章节再讲
+以上内容比较抽象，建议结合2.4节内容理解，关于常函数还有部分的知识点（常函数对类内属性的使用），后面的章节再讲
 
 
 
@@ -585,19 +585,636 @@ friend std::istream &read(std::istream&, Sales_data&);
 
 ## 3. 类的其他特性
 
+### 3.1 类成员再探
+
+示例： 一个 `Screen`类
+
+```cpp
+class Screen {
+public:
+    typedef std::string::size_type pos;		//1
+    Screen() = default;		//2
+	Screen(pos ht, pos wd, char c)
+        : height(ht), width(wd), contents(ht * wd, c) {}
+    char get() const 					//读取光标处的字符
+    	{ return  contents[cursor]; }	//隐式内联
+    inline char get(pos ht, pos wd) const;	//显示内联
+    Screen &move(pos r, pos c); 			//能在之后被设为内联
+    
+private：
+    pos cursor = 0;
+    pos height = 0, width = 0;
+    std:string contents;
+};
+```
+
+
+
+> 说明
+>
+> 代码1使用别名将属性的类型抽象出来
+>
+> 代码2，因为定义了有参构造函数，编译器不会再提供默认的构造，而我们需要一个默认的构造，用这行代码告诉编译器提供一个默认的构造函数
+
+
+
+####  1. 成员函数和普通的函数一样也可以重载
+
+重载的法则和普通函数重载一样
+
+
+
+#### 2. 可变数据成员
+
+在前面讲过常函数，关于常函数还有一个特性：==常函数内不可以修改成员属性==
+
+```cpp
+class Person {
+public:
+    int m_A;
+    int m_B;
+    
+public:
+    void func() const 
+    {
+        m_A = 100;		//错误 cosnt函数不可以修改属性的值
+        std::cout << m_A << std::endl;	//正确，可以读取
+    }
+};
+```
+
+如果我们有需要在常函数内改变属性值的需求，可以使用 `mutable` 关键字
+
+```cpp
+class Person {
+public:
+    mutable int m_A = 42;    
+public:
+    void func() const 
+    {
+        m_A = 100;		//正确 m_A 有mutable修饰
+        std::cout << m_A << std::endl;	//正确，可以读取
+    }
+};
+```
 
 
 
 
 
+### 3.2 返回 `*this` 的成员函数
+
+关于类的 `this` 指针前面已经有过介绍
+
+在Screen类中有一个 `set` 的方法，该方法是在当前光标位置插入一个字符，`move` 方法是移动光标
+
+```cpp
+class Screen {
+public:
+    typedef std::string::size_type pos;		
+    // 其他无关代码
+    Screen &set(char)
+    {
+        contents[cursor] = c;
+        return *this;
+    }
+    Screen &set(pos r, pos col, char ch)		//重载，在指定位置插入一个字符
+    {
+        contents[r*width + col] = ch;
+        return *this;
+    }
+    Screen &move(pos r, pos c)
+    {
+        pos = row = r * width;
+        cursor = row + c;
+        return *this;
+    }
+private：
+    pos cursor = 0;
+    pos height = 0, width = 0;
+    std:string contents;  
+};
+```
+
+定义一个实例对象`myScreen`，我们可以用下面的形式调用完成将光标移动指定位置后在设置该位置的字符值
+
+```cpp
+myScreen.move(4, 0).set('#');
+```
+
+这种方式叫做==链式编程== ，为什么可以连续的调用呢，我们回到函数的定义
+
+这两个函数的返回值都是 `*this` ，先看前面部分 `myScreen.move(4, 0)` 这个调用返回的是 `*this` 对应到这里就是实例对象 `myScreen`, 既然是实例对象本身，那么我可以继续调用 `set('#')` , 两次调用都会作用到同一个实例对象上。
+
+和上面链式调用等价的语句
+
+```cpp
+myScreen.move(4, 0);
+myScreen.set('#');
+```
+
+
+
+- [ ] TODO： 使用 `Screen` 而非引用 `Screen&` 类型接收返回的值会发生什么？
+
+一个简单的说明示例
+
+```cpp
+#include <iostream>
+using namespace std;
+
+struct A
+{
+    int m_num = 0;
+    
+    A func1()
+    {
+        cout << "1.func1 num :" << m_num << endl;
+        m_num = 1;
+        cout << "2.func1 num :" << m_num << endl;
+        return *this;
+    }
+    
+    A func2()
+    {
+        cout << "1.func2 num :" << m_num << endl;
+        m_num = 2;
+        cout << "2.func2 num :" << m_num << endl;
+        return *this;
+    }
+};
+
+int main()
+{
+    A a;
+    cout << "a.m_num = "  << a.m_num << endl; 
+    a.func1().func2();
+    cout << "a.m_num = "  << a.m_num << endl; 
+}
+```
+
+运行结果
+
+```shell
+a.m_num = 0
+1.func1 num :0
+2.func1 num :1
+1.func2 num :1
+2.func2 num :2
+a.m_num = 1
+```
+
+
+
+**常函数返回 `*this` ** 
+
+常函数返回 `*this` , （用引用接收）返回的是一个常量引用
+
+
+
+### 3.3 类类型
+
+每个了定义了一个唯一的类型，对于两个类来说，即使它们的成员完全一样，这两个类也是不同的类型。例如
+
+```cpp
+struct A {
+  int memi;
+    int getMem();
+};
+
+struct B {
+  int memi;
+  int getMem();
+};
+A a;
+B b = a;	//错误 A，B是不同的类，不能赋值
+```
+
+
+
+#### 类声明
+
+类和函数一样也可声明和定义分开，类的声明形式
+
+```cpp
+class Screen;		//Screen 类的声明
+```
+
+对于类型 Screen来说，在它声明之后定义之前是一个**不完全类型**，它的使用非常有限：可以定义指向这种类型的指针或引用，也可以声明（但不能定义）以不完全类型作为参数或者返回类型的函数。
+
+
+
+### 3.4 友元再探
+
+不仅函数可以作为一个类的友元，一个类也可以作为另一个类的友元
+
+```cpp
+class Screen {
+  // Window_mgr作为友元，Window_mgr的成员可以访问Screen类的私有部分
+  friend class Window_mgr;
+  //...
+};
+```
+
+令一个类中的某些函数作为另一个类的友元
+
+```cpp
+class Screen {
+  //Window_mgr类的clear函数做友元
+  friend void Window_mgr::clear(ScreenIndex); 
+  //...
+};
+```
+
+
+
+友元函数是可以定义在内部，但是还是需要声明友元函数
+
+```cpp
+struct X {
+    friend void f() { /* 友元函数可以定义在类的内部 */ }
+    X() { f(); }	//错误： f还没有被声明
+    void g();
+    void h();
+};
+void X::g() { return f(); }		//错误： f还没有被声明
+void f();						//声明那个定义在X中的函数
+void X::h() { return f(); }		//正确，现在f的声明在作用域中了
+```
+
+
+
+==友元的声明不能替代函数的声明==
+
+
+
+## 4. 类的作用域
+
+关于类的作用域，我们在之前已经接触过了，就是当函数声明在类内，定义在类外的时候，定义需要加上类名表示该函数是该类的成员
+
+```cpp
+void Window_mgr::clear(ScreenIndex  i)
+{
+    Screen &s = screens[i];
+    s.contents = string(s.height * s.width, '');
+}
+```
+
+
+
+### 4.1 名字查找与类的作用域
+
+类的定义分两步处理：
+
+- 首先，编译成员的声明
+- 直到类全部可见后才编译函数体。
+
+> 编译器处理类中的全部声明后才会处理成员函数的定义。所以类中的成员变量可以定义在类内的任何位置
+
+
+
+**用于类成员声明的名字查找**
+
+```cpp
+typedef double Money;
+string bal;
+class Account {
+public:
+    Money balance() { return bal; }
+private:
+    Money bal;
+    //...
+}
+```
+
+当编译器看到 `balance` 函数的声明时，首先会在 `Account` 内找 `Money`。此时只考虑Account内使用Money前出现的声明，很显然没有。于是就会在Account外层寻找，找到 `typedef double Money;` 。
+
+另一方面 `balance` 函数体在整个类可见后才被处理，所以`return` 返回的时类内成员 `bal` 而并不是 string 对象
 
 
 
 
 
+## 5. 构造函数再探
+
+### 5.1 构造函数初始化列表
+
+构造函数的作用通常是用来初始化成员属性的，成员属性的初始化也可以在定义的时候初始化，但是有时候初始值可能是需要类的使用者自定义，那么就只能在构造函数中初始化了。
+
+```cpp
+//构造函数初始化成员变量的一种写法
+Sales_data::Sales_data(cont string &s, unsigned cnt, double price)
+{
+    bookNo = s;
+    units_sold = cnt;
+    revenue = cnt * price;
+}
+```
+
+上面这段代码在之前是已经出现过的，正确来说这不是对成员的初始化，而是赋值操作。这样写虽然合法，但却不是最好的方式，列表初始化才是最优的方式，而且有些情况下我们必须使用列表初始化。比如下面的例子
+
+```cpp
+class ConstRef {
+public:
+    ConstRef(int ii);
+private:
+    int i;
+    const int ci;
+    int &ri;
+};
+```
+
+假设`ConstRef` 类的成员需要类的使用者初始化（大多数情况下是这样的），很显然使用下面的赋值操作是错误的
+
+```cpp
+//错误： ci 和ri必须被初始化
+ConstRef::ConstRef(int ii)
+{
+    i = ii;		//正确
+    ci = ii;	//错误 不能给const赋值
+    ri = i;		//错误 ri没有被初始化
+}
+```
+
+正确的写法，列表初始化
+
+```cpp
+ConstRef::ConstRef(int ii) : i(ii), ci(ii), ri(i) {}
+```
 
 
 
+#### 成员初始化的顺序
+
+```cpp
+class X {
+    int i;
+    int j;
+public:
+    //为定义的：i在j之前被初始化
+    X(int val) : j(val), i(j) {}
+};
+```
+
+一般来说，初始化的顺序没什么特别要求，不过如果一个成员是用另一个成员来初始化的那么这两个成员的初始化顺序就很关键。
+
+上面的例子从形式来看是先用 `val` 初始化 `j` ，在用 `j` 初始化 `i`。实际的初始化顺序和成员的定义顺序一样，是先初始化 `i` ,再初始化 `j`
+
+> 最好令构造初始值的顺序域成员声明的顺序保持一致，而且如果可能的话，尽可能避免使用某些成员初始化其他成员
+
+```cpp
+X(int val): i(val), j(val) {}
+```
+
+
+
+#### 默认实参和构造函数
+
+```cpp
+class Sales_data {
+public:
+    Sales_data(std::string s = "") : bookNo(s) {}
+    //...
+};
+```
+
+
+
+> 如果一个构造函数为所有参数都提供了默认实参，则它实际上也定义了默认构造函数
+
+
+
+
+
+### 5.2 委托构造函数
+
+<span style="border:2px solid Red">C++11</span> 在一个类中，不同的构造函数中可能存在冗余的语句，这时我们可以使用**委托构造函数**。
+
+一个委托构造函数使用它所属类的其他构造函数指向它自己的初始化过程，或者说它吧自己的一些（或者全部）职责委托给其他构造函数
+
+```cpp
+class Sales_data {
+public:
+    //非委托构造函数使用对应的实参初始化成员
+    Sales_data(std::string s, unsigned cnt, double price):
+    	bookNo(s), units_sold(cnt), revenue(cnt*price) { }
+    //其余构造函数全都委托给另一个构造函数
+    Sales_data() : Sales_data("", 0, 0) { }
+    Sales_data(std::string s) : Sales_data(s, 0, 0) { }
+    Sales_data(std::istream &is) : Sales_data() { read(is, *this); }
+};
+```
+
+
+
+### 5.3 默认构造函数的作用
+
+如果我们自己定义了构造函数（无参构造和有参构造）编译器都不会提供一个默认的构造函数（无参构造函数），没有默认构造函数其实不会有任何的错误，当然前提是我们初始化对象时不能使用无参构造（默认构造）。例如下面的示例
+
+```cpp
+class NoDefault{	//只有有参构造的类
+public:
+    NoDefault(const std::string&);
+    //....
+};
+
+int main()
+{
+	NoDefault a;	//错误，调用无参构造
+    NoDefault b("hello");	//正确
+}
+```
+
+上面的这个例子很明显的可以观察到会调用无参构造，而类没有提供无参构造出现错误，但是下面的这个示例可能就不那么明显了
+
+```cpp
+class NoDefault{	//只有有参构造的类
+public:
+    NoDefault(const std::string&);
+    //....
+}；
+struct A {
+    NoDefault my_mem;
+};
+A a;		//错误：不能为A合成构造函数
+
+struct B {
+    B() {}	//错误： b_member没有初始值
+    NoDefault b_member;
+};
+```
+
+
+
+> 在实际中，如果定义了其他构造函数，那么最后也提供一个默认发构造函数
+
+默认构造函数的调用
+
+```cpp
+Sales_data obj();	//错误
+Sales_data obj2;		//正确
+```
+
+上面第一行代码没有语法错误，但是这不是调用默认构造函数创建一个实例对象，而是声明了一个`obj`函数，其返回值是`Sales_data` 类型
+
+
+
+### 5.4 隐式的类类型转换
+
+下面的代码用到了本章之前所定义的`Sales_data`的相关成员
+
+```cpp
+// 相关成员的原型
+Sales_data& combine(const Sales_data&);		//combine
+Sales_data(const std::string &s);			//构造函数1
+Sales_data(std::istream &);					//构造函数2
+
+//item 是一个 Sales_data的实例，combine是将两个Sales_data实例对象相加
+string null_book = "9-999-99999-9";
+item.combine(null_book);
+```
+
+上面的7，8两行代码是正确。`combine`定义的参数类型是 `const Sales_data`，但是我们传入一个 `string` 类型的也是可以的。这是发生了类类型的隐式转换，把传入的`string`隐式的转换为了 `Sales_data` ，这种转换是由**转换构造函数**实现的，所谓转换构造函数就是只定义了一个实参的构造函数，上面的构造函数1和2都是转换构造函数。所以执行`item.combine(null_book);` 会自动的调用`Sales_data(const std::string &s);	` 创建一个临时的`Sales_data`对象。
+
+==**只允许一步类类型转换**==
+
+```cpp
+//错误： 需要用户定义的两种转换：
+//（1）把 "9-999-99999-9" 转换成string
+// (2) 再把这个（临时的）string转换成Sales_data
+item.combine("9-999-99999-9");
+```
+
+可以显示地把字符串转换成string或者Sales_data
+
+```cpp
+//正确： 显示地转换成string，隐式地转换成Sales_data
+item.combine(string("9-999-99999-9"));
+//正确：隐式地转换成string，显示地转换成Sales_data
+item.combine(Sales_data("9-999-99999-9"));
+```
+
+说明：`"9-999-99999-9"` 字符串字面值并不是`string` 类型，它的类型应该是 `const char*`
+
+
+
+#### 抑制构造函数定义的隐式转换
+
+有时候我们并不希望发生类类型的隐式转换，我们可以通过将构造函数声明为 `explicit` 加以阻止：
+
+```cpp
+class Sales_data {
+public:
+    Sales_data() = default;
+    Sales_data(const std::string &s, unsigned n, double p):
+    			bookNo(s), units_sold(n), revenue(p*n) {}  
+    explicit Sales_data(const std::string &s) : bookNo(s) { }		
+    explicit Sales_data(std::istream &);
+    //...
+};
+//此时下面的代码就是错误的，无法通过编译
+item.combine(null_book);	//错误： string构造函数是explicit的 
+item.combine(cin);			//错误： istream构造函数是explicit的
+```
+
+`explicit`使用注意
+
+- `explicit` 只对一个实参的构造函数有效，（多个实参的构造函数也不能用于执行隐式转换）
+- 只能再类内声明构造函数时使用`explicit`关键字，在类外定义时不能重复
+- `explicit` 构造函数只能用于直接初始化，不能用于拷贝形式的初始化（使用 `=`）
+
+
+
+#### 类类型的显示转换
+
+```cpp
+//正确：实参是一个显示构造的Sales_data对象
+item.combine(Sales_data(null_bokk));
+//正确： static_cast 可以使用explicit的构造函数
+item.combine(static_cast<Sales_data>(cin));
+```
+
+
+
+
+
+### 5.5 聚合类
+
+当一个类满足如下条件时，我们就说它是一个聚合类：
+
+- 所有成员都是`public`的
+- 没有定义任何构造函数
+- 没有类内初始值
+- 没有基类，也没有 `virtual`函数（虚函数，后面的章节会介绍）
+
+例如
+
+```cpp
+struct Data {
+  int ival;
+  string s;
+};
+```
+
+聚合类的初始化，使用`{}` ，值的顺序必须和声明的顺序一致
+
+```cpp
+//val1.ival = 0; val1.s = string("Anna")
+Data val1 = {0, "Anna"};
+```
+
+
+
+### 5.6 字面值常量类
+
+- [ ] TODO
+
+
+
+## 6. 类的静态成员
+
+类和实例的工作机制，我们创建一个类的实例，这个实例就会有这个类的所有成员属性和成员方法，而且同一个类的不同实例的成员之间是完全独立的。简单的理解就是类的实例会把类的成员拷贝一份给自己用。
+
+而静态的成员（属性，方法）是只有一份的，就是所有的实例对象共享同一个成员。
+
+**声明静态成员**，银行账户示例：
+
+```cpp
+class Account {
+public:
+    void calculate() { amount += amount * interestRate; }
+    static double rate() { return interestRate; }
+    static void rate(double);
+private:
+    std::string ower;
+    double amount;
+    static double interestRate;
+    static double initRate();
+};
+```
+
+
+
+#### 静态成员的使用
+
+对于静态成员我们既可以使用类名调用，也可以使用实例对象调用，因为静态成员是所有实例共享一份，所以使用两种方法调用都是一样，建议使用类名调用。
+
+```cpp
+double r;
+r = Account::rate();	//使用类名调用static void rate(double);
+Account ac1;
+r = ac1.rate();			//使用实例对象调用static void rate(double);
+```
+
+
+
+==静态成员的注意：==
+
+- 对于静态的成员属性，必须类内声明类外初始化（如果需要初始化）
+
+- 成员函数可以定义在类内和类外，
+- 成员（函数，属性）定义在类外时不需要 `static` 关键字
+- 静态成员函数内不可以访问非静态成员属性
 
 
 
