@@ -497,3 +497,26 @@ $vim /etc/sudoers
 
 
 
+## 13. Git 设置/取消代理
+
+设置代理
+
+```shell
+git config --global http.proxy 127.0.0.1:41091
+git config --global https.proxy 127.0.0.1:41091
+
+git config --global http.proxy 'socks5://127.0.0.1:1020'
+git config --global https.proxy 'socks5://127.0.0.1:1020'
+```
+
+
+
+取消代理
+
+```shell
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+
+
+

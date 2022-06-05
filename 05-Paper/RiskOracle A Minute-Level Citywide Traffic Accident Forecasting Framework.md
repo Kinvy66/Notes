@@ -297,24 +297,6 @@ $$
 本文由安徽省杰出青年科学基金（No.8080JJ24）、国家自然科学基金（616724861772492）、江苏自然科学基金（BK20171240、BK20191193）、CAS百强人才计划等部分资助。
 
 
-$$
-r_v=e^{-\frac{(v_{e_x}-v_{des})^2}{10}}-1,\\
-r_y = e^{-\frac{(d_{e_y}-y_{des})^2}{10}-1},\\
-r_x=
-\begin{cases}
-e^{-\frac{(d_{dlead}-d_{safe})^2}{10d_{safe}}}-1,  & \text{if $d_{lead}< d_{safe}$ } \\
-3n+1, & \text{otherwise} \\
-\end{cases}
-$$
-
-$$
-a_{safe}=
-\begin{cases}
-\text{Hard brake} & \text{if $T_c \leq T_{hb}$} \\
-\text{Brake} & \text{otherwise} \\
-\end{cases}
-$$
-
 
 
 
