@@ -38,7 +38,7 @@ $\LaTeX$ 的数学公式有两种：行中公式和独立公式。行中公式�
 
 - 例子：
 
-```
+```latex
 $ J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\left({ \frac{x}{2} }\right)}^{2m + \alpha} \text {，行内公式示例} $
 ```
 
@@ -46,7 +46,7 @@ $ J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\le
 
 - 例子：
 
-```
+```latex
 $$ J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\left({ \frac{x}{2} }\right)}^{2m + \alpha} \text {，独立公式示例} $$
 ```
 
@@ -54,7 +54,7 @@ $$ J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\l
 
 - 例子：
 
-```
+```latex
 $$ 在公式 \eqref{eq:sample} 中，我们看到了这个被自动编号的公式。$$
 
 \begin{equation}
@@ -83,7 +83,7 @@ $$
 
 - 例子：
 
-```
+```latex
 $$ x^{y^z}=(1+{\rm e}^x)^{-2xy^w} $$
 ```
 
@@ -93,7 +93,7 @@ $$ x^{y^z}=(1+{\rm e}^x)^{-2xy^w} $$
 
 - 例子：
 
-```
+```latex
 $$ \sideset{^1_2}{^3_4}\bigotimes \quad or \quad {^1_2}\bigotimes {^3_4} $$
 ```
 
@@ -120,7 +120,7 @@ $$ \sideset{^1_2}{^3_4}\bigotimes \quad or \quad {^1_2}\bigotimes {^3_4} $$
 
 - 例子：
 
-```
+```latex
 $$ f(x,y,z) = 3y^2z \left( 3+\frac{7x+5}{1+y^2} \right) $$
 ```
 
@@ -130,7 +130,7 @@ $$ f(x,y,z) = 3y^2z \left( 3+\frac{7x+5}{1+y^2} \right) $$
 
 - 例子：
 
-```
+```latex
 $$ \left. \frac{{\rm d}u}{{\rm d}x} \right| _{x=0} $$
 ```
 
@@ -142,7 +142,7 @@ $$ \left. \frac{{\rm d}u}{{\rm d}x} \right| _{x=0} $$
 
 - 例子：
 
-```
+```latex
 $$ \frac{a-1}{b-1} \quad or \quad {a+1 \over b+1} $$
 ```
 
@@ -152,7 +152,7 @@ $$ \frac{a-1}{b-1} \quad or \quad {a+1 \over b+1} $$
 
 - 例子：
 
-```
+```latex
 $$ \frac 12,\frac 1a,\frac a2 \quad \mid \quad \text{2 letters only:} \quad \frac 12a \,, k\frac q{r^2} $$
 ```
 
@@ -164,7 +164,7 @@ $$ \frac 12,\frac 1a,\frac a2 \quad \mid \quad \text{2 letters only:} \quad \fra
 
 - 例子：
 
-```
+```latex
 $$ \sqrt{2} \quad or \quad \sqrt[n]{3} $$
 ```
 
@@ -176,7 +176,7 @@ $$ \sqrt{2} \quad or \quad \sqrt[n]{3} $$
 
 - 例子：
 
-```
+```latex
 $$ f(x_1,x_2,\underbrace{\ldots}_{\rm ldots} ,x_n) = x_1^2 + x_2^2 + \underbrace{\cdots}_{\rm cdots} + x_n^2 $$
 ```
 
@@ -188,7 +188,7 @@ $$ f(x_1,x_2,\underbrace{\ldots}_{\rm ldots} ,x_n) = x_1^2 + x_2^2 + \underbrace
 
 - 例子：
 
-```
+```latex
 $$ \vec{a} \cdot \vec{b}=0 $$
 ```
 
@@ -196,7 +196,7 @@ $$ \vec{a} \cdot \vec{b}=0 $$
 
 - 例子：
 
-```
+```latex
 $$ xy \text{ with arrows:} \quad \overleftarrow{xy} \; \mid \; \overleftrightarrow{xy} \; \mid \; \overrightarrow{xy} $$
 ```
 
@@ -208,7 +208,7 @@ $$ xy \text{ with arrows:} \quad \overleftarrow{xy} \; \mid \; \overleftrightarr
 
 例子：
 
-```
+```latex
 $$ \int_0^1 {x^2} \,{\rm d}x $$
 ```
 
@@ -222,7 +222,7 @@ $$ \int_0^1 {x^2} \,{\rm d}x $$
 
 例子：
 
-```
+```latex
 $$ \lim_{n \to \infty} \frac{1}{n(n+1)} \quad and \quad \lim_{x\leftarrow{示例}} \frac{1}{n(n+1)} $$
 ```
 
@@ -235,7 +235,7 @@ $$ \lim_{n \to \infty} \frac{1}{n(n+1)} \quad and \quad \lim_{x\leftarrow{示例
 
 - 例子：
 
-```
+```latex
 $$ \sum_{i=1}^n \frac{1}{i^2} \quad and \quad \prod_{i=1}^n \frac{1}{i^2} \quad and \quad \bigcup_{i=1}^{2} \Bbb{R} $$
 ```
 
@@ -348,7 +348,7 @@ $$ \sum_{i=1}^n \frac{1}{i^2} \quad and \quad \prod_{i=1}^n \frac{1}{i^2} \quad 
 
 - 例子：
 
-```
+```latex
 $$ \verb+\overset{above}{level}+ \qquad \overset{xx}{ABC} \;\; \mid \quad \overset{x^2}{\longmapsto}\ \, \mid \quad \overset{\bullet\circ\circ\bullet}{T} $$
 ```
 
@@ -357,7 +357,7 @@ $$ \verb+\overset{above}{level}+ \qquad \overset{xx}{ABC} \;\; \mid \quad \overs
 
 - 例子：
 
-```
+```latex
 $$ \verb+\underset{below}{level}+ \qquad \underset{xx}{ABC} \;\; \mid \quad \underset{x^2}{\longmapsto}\ \, \mid \quad \underset{\bullet\circ\circ\bullet}{T} $$
 ```
 
@@ -435,7 +435,7 @@ $$ \rm{2OH^{\bullet}_{O(STN)}+2O^{\times}_{O(YSZ)} \; \overset{Surface/bulk}{\un
 
 - 例子：
 
-```
+```latex
 \begin{array}{cc}
     \mathrm{Bad} & \mathrm{Better} \\
     \hline \\
@@ -462,7 +462,7 @@ $$ \rm{2OH^{\bullet}_{O(STN)}+2O^{\times}_{O(YSZ)} \; \overset{Surface/bulk}{\un
 
 - 例子：
 
-```
+```latex
 $$
 \bbox[yellow]{
     e^x=\lim_{n\to\infty} \left( 1+\frac{x}{n} \right)^n \qquad (1)
@@ -480,7 +480,7 @@ $$
 
 - 例子：
 
-```
+```latex
 $$
 \bbox[#9ff, 5px]{ % 此处向外添加 5 像素的边距
     e^x=\lim_{n\to\infty} \left( 1+\frac{x}{n} \right)^n \qquad (1)
@@ -498,7 +498,7 @@ $$
 
 - 例子：
 
-```
+```latex
 $$
 % 此处使用 0.5 倍行高作为边距，附加 2 像素的实线边框（Ctrl+Alt+Y 可见）
 \bbox[#2f3542, 0.5em, border:2px solid #f1f2f6]{
@@ -522,7 +522,7 @@ $$
 
 - 例子：
 
-```
+```latex
 $$
 f\left(
    \left[ 
@@ -562,7 +562,7 @@ $$
 
 - 例子：
 
-```
+```latex
 $$
 \begin{align*}
     a=&\left(1+2+3+ \cdots \right. \\
@@ -584,7 +584,7 @@ $$
 
 - 例子：
 
-```
+```latex
 $$
 \left\langle  
     q \; \middle|
@@ -612,7 +612,7 @@ $$
 
 - 反例： 
 
-```
+```latex
 \begin{array}{c|c}
     \mathrm{Error} & \text{Wrong rendering} \\
     \hline \\
@@ -635,7 +635,7 @@ $$
 
 - 例子：
 
-```
+```latex
 \begin{array}{c|c}
     \text{Normal Operator} & \text{Operator with label above and below} \\
     \hline \\
@@ -662,7 +662,7 @@ $$
 
 - 例子：
 
-```
+```latex
 $$ f(n)= \begin{cases} n/2, & \text {if $n$ is even} \\ 3n+1, & \text{if $n$ is odd} \end{cases} $$
 ```
 
@@ -678,7 +678,7 @@ $$ f(n)= \begin{cases} n/2, & \text {if $n$ is even} \\ 3n+1, & \text{if $n$ is 
 
 - 例子：
 
-```
+```latex
 \begin{array}{c|c}
     \text{Spaces} & \text{Negative Space in Units} \\
     \hline \\
@@ -697,7 +697,7 @@ $$ f(n)= \begin{cases} n/2, & \text {if $n$ is even} \\ 3n+1, & \text{if $n$ is 
 
 - 例子：
 
-```
+```latex
 $$ \mu_0=4\pi\times10^{-7} \ \left.\mathrm{\mathrm{T}\!\cdot\!\mathrm{m}}\middle/\mathrm{A}\right. $$
 $$ 180^\circ=\pi \ \mathrm{rad} $$
 $$ \mathrm{N_A} = 6.022\times10^{23} \ \mathrm{mol}^{-1} $$
@@ -729,7 +729,7 @@ $$ \mathrm{N_A} = 6.022\times10^{23} \ \mathrm{mol}^{-1} $$
 
 - 例子：
 
-```
+```latex
 \begin{array}{|rrrrrrrr|}\hline
     \verb+#000+ & \color{#000}{text} & & &
     \verb+#00F+ & \color{#00F}{text} & & \\
@@ -755,7 +755,7 @@ $$ \mathrm{N_A} = 6.022\times10^{23} \ \mathrm{mol}^{-1} $$
   \hline\end{array}$$
 - 例子：
 
-```
+```latex
 \begin{array}{|rrrrrrrr|}\hline
     \verb+#000+ & \color{#000}{text} & \verb+#005+ & \color{#005}{text} & \verb+#00A+ & \color{#00A}{text} & \verb+#00F+ & \color{#00F}{text}  \\
     \verb+#500+ & \color{#500}{text} & \verb+#505+ & \color{#505}{text} & \verb+#50A+ & \color{#50A}{text} & \verb+#50F+ & \color{#50F}{text}  \\
@@ -801,7 +801,7 @@ $$ \mathrm{N_A} = 6.022\times10^{23} \ \mathrm{mol}^{-1} $$
 
 - 例子：
 
-```
+```latex
 $$
 \require{cancel}
 \begin{array}{rl}
@@ -835,7 +835,7 @@ $$
 
 - 例子：
 
-```
+```latex
 $$
 \require{enclose}
 \begin{array}{rl}
@@ -868,7 +868,7 @@ $$
 | 分别使用 `circle` 和 `roundedbox` 包围的公式 |
 | :------------------------------------------: |
 
-```
+```latex
 $$
 \require{enclose}
 \begin{array}{c}
@@ -881,7 +881,7 @@ $$
 | 使用 `box` 框住所有公式 |
 | :---------------------: |
 
-```
+```latex
 $$
 \require{enclose}
 \enclose{box}{
@@ -912,7 +912,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 $$
 \begin{matrix}
     1 & x & x^2 \\
@@ -938,7 +938,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 $ \begin{matrix} 1 & 2 \\ 3 & 4 \\ \end{matrix} $
 $ \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ \end{pmatrix} $
 $ \begin{bmatrix} 1 & 2 \\ 3 & 4 \\ \end{bmatrix} $
@@ -959,7 +959,7 @@ $ \begin{Vmatrix} 1 & 2 \\ 3 & 4 \\ \end{Vmatrix} $
 
 - 例子：
 
-```
+```Latex
 $$
 \begin{pmatrix}
     1 & a_1 & a_1^2 & \cdots & a_1^n \\
@@ -987,7 +987,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 $$
 \left[
     \begin{array}{cc|c}
@@ -1018,7 +1018,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 这是一个行中矩阵的示例 $\bigl(\begin{smallmatrix} a & b \\ c & d \end{smallmatrix}\bigr)$ 。
 ```
 
@@ -1034,7 +1034,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 \begin{align}
     \sqrt{37} & = \sqrt{\frac{73^2-1}{12^2}} \\
               & = \sqrt{\frac{73^2}{12^2}\cdot\frac{73^2-1}{73^2}} \\ 
@@ -1062,7 +1062,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 \begin{align}
     v + w & = 0  & \text{Given} \tag 1 \\
        -w & = -w + 0 & \text{additive identity} \tag 2 \\
@@ -1090,7 +1090,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 $$
     f(n) =
         \begin{cases}
@@ -1118,7 +1118,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 $$
     \left.
         \begin{array}{l}
@@ -1151,7 +1151,7 @@ $$
 | 不适配[2ex] |
 | :---------: |
 
-```
+```Latex
 $$
 f(n) = 
     \begin{cases}
@@ -1164,7 +1164,7 @@ $$
 | 适配[2ex] |
 | :-------: |
 
-```
+```Latex
 $$
 f(n) = 
     \begin{cases}
@@ -1194,7 +1194,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 \begin{array}{c|lcr}
     n & \text{左对齐} & \text{居中对齐} & \text{右对齐} \\
     \hline
@@ -1220,7 +1220,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 $$
 \begin{array}{c} % 总表格
     \begin{array}{cc} % 第一行内分成两列
@@ -1296,7 +1296,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 $$
 \left\{ 
     \begin{array}{c}
@@ -1324,7 +1324,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 \begin{cases}
     a_1x+b_1y+c_1z=d_1 \\ 
     a_2x+b_2y+c_2z=d_2 \\ 
@@ -1347,7 +1347,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 $$
 x = a_0 + \cfrac{1^2}{a_1 +
             \cfrac{2^2}{a_2 +
@@ -1379,7 +1379,7 @@ $$
 
 - 反例：
 
-```
+```Latex
 $$
 x = a_0 + \frac{1^2}{a_1 +
             \frac{2^2}{a_2 +
@@ -1411,7 +1411,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 $$
 x = a_0 + \frac{1^2}{a_1 +}
           \frac{2^2}{a_2 +}
@@ -1444,7 +1444,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 $$
 \require{AMScd}
 \begin{CD}
@@ -1471,7 +1471,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 $$
 \require{AMDcd}
 \begin{CD}
@@ -1497,7 +1497,7 @@ $$
 
 - 例子：
 
-```
+```Latex
 $$
 \require{AMDcd}
 \begin{CD}
@@ -1530,7 +1530,7 @@ Don't use `\frac` in exponents or limits of integrals; it looks bad and can be c
 
 - 例子：
 
-```
+```Latex
 \begin{array}{cc}
     \mathrm{Bad} & \mathrm{Better} \\
     \hline \\
@@ -1553,7 +1553,7 @@ The `|` symbol has the wrong spacing when it is used as a divider, for example i
 
 - 例子:
 
-```
+```Latex
 \begin{array}{cc}
     \mathrm{Bad} & \mathrm{Better} \\
     \hline \\
@@ -1575,7 +1575,7 @@ For double and triple integrals, don't use `\int\int` or `\int\int\int`. Instead
 
 - 例子：
 
-```
+```Latex
 \begin{array}{cc}
     \mathrm{Bad} & \mathrm{Better} \\
     \hline \\
@@ -1606,7 +1606,7 @@ Use `\,`, to insert a thin space before differentials; without this $\TeX$ will 
 
 - 例子：
 
-```
+```Latex
 \begin{array}{cc}
     \mathrm{Bad} & \mathrm{Better} \\
     \hline \\

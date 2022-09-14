@@ -229,5 +229,36 @@ $$
 
 
 
+$$
+L^{CLIP}(\theta)=
+\mathbb{E}[\text{min}(r_t(\theta)A_t,
+\text{clip}(r_t(\theta),1-\epsilon, 1+\epsilon)A_t)]
+$$
 
 
+
+$$
+\begin{align}
+A_{t}^{GAE(\gamma, \lambda)} 
+& = (1-\lambda) \left( A_t^{(1)} + \lambda A_t^{(2)} + \lambda^{2} A_t^{(3)} + \cdots \right) \\
+& = \sum_{k = 0} ^{T-1}(\gamma \lambda)^{k}\delta_{t+k}
+\end{align}
+$$
+
+$$
+\begin{align}
+A_t^{(n)} = \sum_{k = 0}^{n-1}\gamma^{k}\delta_{t+k} 
+=  & -V_{\phi}(S_t) + r_t + \gamma_{t+1}+\gamma^{2}r_{t+2}   \\
+& +\cdots +\gamma^{n-1}r_{t+n-1}+\gamma^{n}V_{\phi}(s_t + n)
+\end{align}
+$$
+
+$$
+\theta^{'} \leftarrow \theta - \eta \nabla_{\theta}\mathcal{L}_{clip}(\theta)
+$$
+
+
+$$
+b_v,b_R\in [-1,1] \\
+e_v,e_R\in [0,k]
+$$

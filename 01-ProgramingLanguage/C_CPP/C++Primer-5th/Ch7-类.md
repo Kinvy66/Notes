@@ -40,7 +40,7 @@ class ClassName{
 > 说明：
 >
 > 1. `struct` 和 `class` 定义类两者基本是等价的，只是默认的访问权限不同，关于权限的问题在7.2节会详细讲解，在这之前我们定义类都使用 `struct`
-> 2. 类中的成员变量（属性）定义的位置不影响调用，即可以在类的任意位置，也就是说我们可以在声明定义一个变量之前就可以使用改变量，这个规则只限于类方法和类属性
+> 2. 类中的成员变量（属性）定义的位置不影响调用，即可以在类的任意位置，也就是说我们可以在声明定义一个变量之前就可以使用该变量，这个规则只限于类方法和类属性
 > 3. 定义类的语法 `{}` 后面有一个 `;` ,不用漏了
 
 
@@ -106,7 +106,9 @@ Sales_data total;		//total 是一个类对象
 
 
 
-##### 1. 引入 this
+### 1.2 定义改进的 `Sales_data` 类
+
+####  引入 this
 
 使用total对象对isbn 函数的调用：
 
@@ -139,7 +141,7 @@ return this->bookNo;		//正确，返回当前对象实例的bookNo属性
 
 
 
-##### 2. 引入const成员函数
+####  引入const成员函数
 
 ```cpp
 std::string isbn() const { return bookNo; }
@@ -423,7 +425,7 @@ struct Sales_data {
 析构函数语法 ：`~类名() {}`
 
 1. 析构函数，没有返回值也不写void
-2. 函数名称与类名相同,在名称前加上符号 ~
+2. 函数名称与类名相同,在名称前加上符号 `~`
 3. 析构函数不可以有参数，因此不可以发生重载
 4. 程序在对象销毁前会自动调用析构，无须手动调用,而且只会调用一次
 
@@ -464,15 +466,7 @@ total = trans;		//调用的是赋值操作
 
 编译器提供的默认赋值运算和默认拷贝构造操作是一样的，就是对属性值进行值拷贝。
 
-
-
-
-
 > 拷贝构造函数和赋值操作也可以自定义，如何自定义以及相关的使用在后面章节有详细的讲解，这里只是一个简单的介绍
-
-
-
-
 
 ## 2. 访问控制与封装
 
@@ -545,7 +539,7 @@ private:
 };
 ```
 
-
+**使用 class 或 struct 关键字**，上面的类的定义使用了  , 这两者只是形式的变化，它们的唯一区别就是`class` 和 `struct` 的默认访问权限不一样。
 
 > 说明：
 >
@@ -618,13 +612,13 @@ private：
 
 
 
-####  1. 成员函数和普通的函数一样也可以重载
+####   成员函数和普通的函数一样也可以重载
 
 重载的法则和普通函数重载一样
 
 
 
-#### 2. 可变数据成员
+#### 可变数据成员
 
 在前面讲过常函数，关于常函数还有一个特性：==常函数内不可以修改成员属性==
 
@@ -715,7 +709,9 @@ myScreen.set('#');
 
 
 
-- [ ] TODO： 使用 `Screen` 而非引用 `Screen&` 类型接收返回的值会发生什么？
+ 使用 `Screen` 而非引用 `Screen&` 类型接收返回的值会发生什么？
+
+
 
 一个简单的说明示例
 
@@ -794,7 +790,7 @@ B b = a;	//错误 A，B是不同的类，不能赋值
 
 #### 类声明
 
-类和函数一样也可声明和定义分开，类的声明形式
+类和函数一样也可声明和定义分开，类的声明形式，这种也叫**前向声明**
 
 ```cpp
 class Screen;		//Screen 类的声明
@@ -990,7 +986,7 @@ public:
 
 <span style="border:2px solid Red">C++11</span> 在一个类中，不同的构造函数中可能存在冗余的语句，这时我们可以使用**委托构造函数**。
 
-一个委托构造函数使用它所属类的其他构造函数指向它自己的初始化过程，或者说它吧自己的一些（或者全部）职责委托给其他构造函数
+一个委托构造函数使用它所属类的其他构造函数指向它自己的初始化过程，或者说它把自己的一些（或者全部）职责委托给其他构造函数
 
 ```cpp
 class Sales_data {
@@ -1046,7 +1042,7 @@ struct B {
 
 
 
-> 在实际中，如果定义了其他构造函数，那么最后也提供一个默认发构造函数
+> 在实际中，如果定义了其他构造函数，那么最好也提供一个默认构造函数
 
 默认构造函数的调用
 
@@ -1136,6 +1132,23 @@ item.combine(static_cast<Sales_data>(cin));
 
 
 
+##### 标准库中的应用
+
+- 接受一个单参数的 `const char*` 的 `string` 构造函数不是 `explicit`
+
+  ```cpp
+  string s = "hello";  // hello 是 const char* ，需要调用非explicit 转换构造函数
+  ```
+
+- 接受一个容量参数的 `vector` 的构造函数是`explicit` 的
+
+  ```cpp
+  vector<int> vec(5);     // 显示的调用形参为一个的构造函数
+  vector<int> vec = 5；   // 错误，对应的转换构造函数是 explicit， 不能隐式调用
+  ```
+
+  
+
 
 
 ### 5.5 聚合类
@@ -1167,7 +1180,52 @@ Data val1 = {0, "Anna"};
 
 ### 5.6 字面值常量类
 
-- [ ] TODO
+在第六章中提到过 `constexpr` 函数的参数和返回值必须式字面值类型，类也可以是字面值类型。和其他类不同，字面值类型的类可能含有 `constexpr` 函数成员。这样的成员必须符合 `constexpr` 函数的所有要求，它们是隐式`const` 的。
+
+数据成员都是字面值类型的聚合类是字面值常量类。如果一个类不是聚合类，但它符合下述要求，则它也是一个字面值常量类：
+
+- 数据成员都必须是字面值类型。
+- 类必须至少含有一个 `constexpr` 构造函数
+- 如果一个数据成员含有类内初始值，则内置类型成员的初始值必须是一条常量表达式；或者如果成员属于某种类类型，则初始值必须使用成员自己的 `constexpr` 构造函数。
+- 类必须使用析构函数的默认定义，该成员负责销毁类的对象。
+
+
+
+#### `constexpr` 构造函数
+
+一个字面值常量类必须至少提供一个 `constexpr` 构造函数，通过前置关键字 `constexpr` 就可以声明一个 `constexpr` 构造函数了：
+
+```cpp
+class Debug {
+public:
+    constexpr Debug(bool b = true) : hw(b), io(b), other(b) {}
+    constexpr Debug(bool h, bool i, bool o) :
+                    hw(h), io(i), other(o) {}
+    
+    constexpr bool any() { return hw || io || other;}
+    void set_io(bool b) {io = b;}
+    void set_hw(bool b) {hw = b;}
+    void set_other(bool b) {other = b;}
+private:
+    bool hw;
+    bool io;
+    bool other;
+
+};
+```
+
+ `constexpr` 构造函数用于生成  `constexpr` 对象以及  `constexpr` 函数的参数或返回类型：
+
+```cpp
+constexpr Debug io_sub(false, true, false);			// 调试IO
+if(io_sub.any) 			
+    cerr << "print appropriate error messages" << endl;
+constexpr Debug prod(false);						// 无调试
+if(prod.any())
+    cerr << "print an error messages" << endl;
+```
+
+
 
 
 

@@ -332,7 +332,7 @@ UNIX系统为这样的操作提供了一种原子操作方法，即在打开文�
 
 
 
-## 3.13 函数 <span style = "font-family: Courier New">sync</span> 、<span style = "font-family: Courier New">fsync</span> 和 <span style = "font-family: Courier New">fdatasync</span> 
+## 3.13 函数 <span style = "font-family: Courier New">sync</span> 、<span style = "font-family: Courier New">fsync</span> 和 <span style = "font-family: Courier New">fdatasync</span>
 
 当我们向文件写入数据时，内核通常先将数据复制到缓冲区中，然后排入队列，晚些时候写入磁盘。通常当内核需要重用缓冲区来 存放其他磁盘块数据是，它会把延迟写数据写入磁盘。
 
@@ -356,7 +356,7 @@ UNIX系统为这样的操作提供了一种原子操作方法，即在打开文�
 
 
 
-## 3.14 函数 <span style = "font-family: Courier New">fcntl</span> 
+## 3.14 函数 <span style = "font-family: Courier New">fcntl</span>
 
 <span style = "font-family: Courier New">fcntl</span> 函数可以改变已经打开文件的属性
 
@@ -380,11 +380,11 @@ UNIX系统为这样的操作提供了一种原子操作方法，即在打开文�
 
   cmd有11个选项值，这里先介绍8种。参照 [图3-7](#fig3-7) 讨论各个表的状态值
 
-  |    cmd参数值    |                        说明                        |
-  | :-------------: | :------------------------------------------------: |
-  |     F_DUPFD     | 复制文件描述符fd，<br />新文件描述符作为函数值返回 |
-  | F_DUPFD_CLOEXEC |                   复制文件描述符                   |
-  |       ...       |                        ...                         |
+  |    cmd参数值    |                       说明                        |
+  | :-------------: | :-----------------------------------------------: |
+  |     F_DUPFD     | 复制文件描述符fd，<br/>新文件描述符作为函数值返回 |
+  | F_DUPFD_CLOEXEC |                  复制文件描述符                   |
+  |       ...       |                        ...                        |
 
 
 

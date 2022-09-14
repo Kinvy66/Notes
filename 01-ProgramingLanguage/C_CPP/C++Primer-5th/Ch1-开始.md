@@ -20,6 +20,10 @@
 
 我们首先介绍如何使用 C++ 来解决这些子问题，然后编写书店程序。
 
+[C++ Primer, 5th Edition 代码下载](https://www.informit.com/store/c-plus-plus-primer-9780321714114)
+
+
+
 ## 1. 一个简单的C++程序
 
 从一个简单的C++程序开始
@@ -158,39 +162,7 @@ int main()
 
 ###   4.3 if
 
-示例
-
-```cpp
-#include <iostream>
-int main() 
-{
-    // currVal是我们正在统计的数，我们将读入的新值存入val
-    int currVal = 0, val = 0;
-    // 读取第一个数，并确保确实有数据可以处理
-    if(std::cin >> currVal) {
-        int cnt = 1;
-        while(std::cin >> val) {
-            if(val == currVal) {
-                ++cnt;
-            }
-            else {
-                std::cout << currVal << " occurs " 
-                          << cnt << " times " << std::endl;
-                currVal = val;
-                cnt = 1;
-            }
-        }
-        std::cout << currVal << " occurs " 
-                  << cnt << " times " << std::endl;
-    }
-
-    return 0;
-}
-```
-
-
-
-### 一个示例
+一个示例
 
 读取一串数据并统计每个数字出现的次数 ，windows下的终止键 `ctrl` + `z` 
 
