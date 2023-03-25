@@ -1,4 +1,4 @@
-# 第9章  顺序容器
+# 
 
 
 
@@ -94,11 +94,11 @@ vector<noDefault> v2(10);		   // 错误： 调用默认构造函数初始化，�
 
 `end` 迭代器指向的是容器最后一个元素的<span style="background: yellow">后一个位置</span> , 对其解引用是无法获取到任何元素的。
 
-这种元素范围被称为**左闭区间**， 用数学符号描述为:  $[\tt{begin, end})$
+这种元素范围被称为**左闭区间**， 用数学符号描述为:  [begin, end)
 
 
 
-#### 使用左闭和范围蕴含的编程假定
+#### 使用左闭合范围蕴含的编程假定
 
 使用左闭范围主要是为了方便迭代元素，这种范围具有以下三种性质：
 
@@ -219,7 +219,7 @@ deque<string> svec(10);			// 10 个元素，每个都是空string
 array<int, 42>		// 类型为： 保存42个int的数组  int[42]
 array<string, 10>	// 类型为： 保存10个string的数组  string[10]
     
-array<string, 10>   // 错误， 没有指定容器大小
+array<string>   // 错误， 没有指定容器大小
 ```
 
 > `array` 类型包含两部分，元素的类型，包含元素的个数
@@ -286,7 +286,7 @@ swap(svec1, svec2);
 
 调用 swap 后，svec1 将包含24个string元素，svec2将包含10个string， swap 只是交互容器的内部数据结构。
 
-元素不会被移动的事实意味着，除 string 外，指向容器的迭代器、引用和指针在 swap 操之后都不会失效。它们仍指向 swap 操作之前所指向的那些元素。但是，在 swap 操作之后，这些元素已经属于不同的容器了。例如，假定 `iter` 在 swap 之前指向 `svec1[3]` 的 string， 那么在 swap 之后它指向 `svec[3]` 的元素。
+元素不会被移动的事实意味着，除 string 外，指向容器的迭代器、引用和指针在 swap 操之后都不会失效。它们仍指向 swap 操作之前所指向的那些元素。但是，在 swap 操作之后，这些元素已经属于不同的容器了。例如，假定 `iter` 在 swap 之前指向 `svec1[3]` 的 string， 那么在 swap 之后它指向 `svec2[3]` 的元素。
 
 - [ ] TODO 关于 `swap` 后面章节有更详细的介绍
 
@@ -356,7 +356,7 @@ if (storeA < storeB) // 错误：Sales_data 没有 < 运算符
 
 #### 使用 push_back
 
-`push_back` 是将一个元素追加到容器的尾部，除 array 和 forward_list ，每个顺序容器都支持该操作。
+`push_back` 是将一个元素追加到容器的尾部，<span style="background: yellow">除 array 和 forward_list</span> ，每个顺序容器都支持该操作。
 
 ```cpp
 // 从标准输入读取数据，将每个单词放到容器末尾
@@ -373,7 +373,7 @@ while (cin >> word)
 
 #### 使用 push_front
 
-`push_front` 将元素插入到容器的头部。除了 arrray、vector 和 string，其他顺序容器都支持该操作
+`push_front` 将元素插入到容器的头部。<span style="background: yellow">除了 arrray、vector 和 string</span>，其他顺序容器都支持该操作
 
 ```cpp
 list<int> ilist;
@@ -438,7 +438,7 @@ while (cin >> word)
 c.emplace_back("978-0590353403", 25, 15.99);
 // 错误; 没有接受三个参数的 push_back 版本
 c.push_back("978-0590353403", 25, 15.99);
-// 正确： 创建一个临时的 Sales_data 对象床底给push_back
+// 正确： 创建一个临时的 Sales_data 对象传递给push_back
 c.push_back(Sales_data("978-0590353403", 25, 15.99));
 ```
 
@@ -840,3 +840,4 @@ while (!intStack.empty())
 ![image-20220524194729390](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20220524194729390.png)
 
 `queue` 和 `priority_queue`  适配器的访问策略就是和对应的数据结构一致。
+

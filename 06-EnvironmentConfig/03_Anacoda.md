@@ -19,6 +19,8 @@ $ pip install packge-name	#在环境中安装包
 $ conda deactivate 			#退出虚拟环境
 $ conda remove --name $your_env_name  $package_name   #删除环境
 conda remove --name d2l --all
+
+$conda env create -f environment.yaml
 ```
 
 
@@ -49,5 +51,29 @@ conda remove --name d2l --all
 
 ```shell
 $ pip install d2l -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
+```
+
+
+
+### 4. 修改安装源
+
+清华源: `~/.condarc`
+
+```
+channels:
+  - defaults
+show_channel_urls: true
+default_channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+custom_channels:
+  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  pytorch-lts: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 ```
 

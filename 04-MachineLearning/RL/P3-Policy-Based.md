@@ -147,7 +147,6 @@ $$
 = \frac{\partial \ \pi(\theta)}{\partial\ \theta}
 $$
 
-
 **综上** 策略梯度的两种等价形式
 $$
 \begin{align}
@@ -158,7 +157,7 @@ $$
 & = \mathbb{E}_{{\color{red}{A }}\sim \pi(\cdot \vert{\color{green}{s}};\theta)} [\frac{\partial\ \log \pi({\color{red}{A}}\vert {\color{green}{s}}; \theta)} {\partial\ \theta} \cdot Q_{\pi}({\color{green}{s}},{\color{red}{A}})]
 \end{align}
 $$
-公式(1) 用于动作空间式离散的， 公式(2) 用于动作空间式连续的
+公式(1) 用于动作空间式离散的， 公式(2) 用于动作空间式连续的 
 
 
 

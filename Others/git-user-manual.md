@@ -210,3 +210,19 @@ CRLF：Carriage Return Line Feed 回车换行\r\n
    ```
    
    将这个文件内容复制到GitHub
+
+
+
+#### 配置代理
+
+```shell
+
+git config --global https.proxy http://127.0.0.1:1080
+
+git config --global https.proxy https://127.0.0.1:1080
+
+git config --global --unset http.proxy
+
+git config --global --unset https.proxy
+```
+

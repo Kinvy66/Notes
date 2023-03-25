@@ -731,7 +731,7 @@ struct A
         return *this;
     }
     
-    A func2()
+    A& func2()
     {
         cout << "1.func2 num :" << m_num << endl;
         m_num = 2;

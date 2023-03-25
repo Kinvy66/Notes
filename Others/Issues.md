@@ -114,6 +114,16 @@
 
 3. 其他软件安装
 
+
+
+环境变量恢复
+
+```shell
+$ export PATH=/usr/bin:bin
+```
+
+
+
 ## 2. Debian  tab命令补全
 
 Debian 默认不带命令补全的插件
@@ -241,6 +251,12 @@ $ git config --global http.sslVerify "false"
 
 
 ## 6. Anaconda
+
+### 安装
+
+
+
+
 
 ### 1. 更新
 
@@ -479,7 +495,7 @@ $ sudo /etc/init.d/xrdp start
 
 
 
-## 12. Ubunt添加新用户
+## 12. Ubuntu添加新用户
 
 ```shell
 #Step1：添加新用户

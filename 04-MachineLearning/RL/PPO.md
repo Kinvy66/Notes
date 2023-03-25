@@ -36,7 +36,7 @@ $$
 
 
 
-## Imortance Sampling
+## Importance Sampling
 
 假设我们需要计算期望值 $\mathbb{E}_{x\sim p}[f(x)]$ ，$p$ 是变量 $x$ 的分布：
 $$

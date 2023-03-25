@@ -1,0 +1,20 @@
+## 时序网络
+
+- 参考 https://wizardforcel.gitbooks.io/learn-dl-with-pytorch-liaoxingyu/content/5.1.html
+
+### RNN
+
+![006tKfTcly1fmt9xz889xj30kb07nglo](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/006tKfTcly1fmt9xz889xj30kb07nglo.jpg)
+
+
+
+### LSTM
+
+![img](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/006tKfTcly1fmt9qj3uhmj30iz07ct90.jpg)
+
+
+
+### GRU
+
+![img](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/006tKfTcly1fmtaj38y9sj30io06bmxc.jpg)
+
