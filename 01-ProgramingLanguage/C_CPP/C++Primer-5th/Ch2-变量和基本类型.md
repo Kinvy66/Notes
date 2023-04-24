@@ -215,6 +215,8 @@ int j;		//声明并定义j
 
 <span style="background: yellow">变量能且只能被定义一次，但是可以被多次声明</span>
 
+`extern` 的使用参考：https://www.jianshu.com/p/165b3410b7fa
+
 
 
 ###  2.3标识符
@@ -502,7 +504,7 @@ int &r4 = r1 * 2;			//错误
 
 ### 4.2 指针和const
 
-
+拷贝关系：
 
 |               | `int i` | `cont int i` |
 | :-----------: | :-----: | :----------: |
@@ -578,6 +580,12 @@ int *const p3 = nullptr;
 ```
 
 > p2 和p3是等价的，`constexpr`修饰指针变量是被定义为顶层const
+
+```c++
+constexpr const int *pi = nullptr;
+// 等价定义
+const int *const pi = nullptr;
+```
 
 
 
@@ -763,7 +771,7 @@ struct ClassName{
 
 *注意：c语言中的结构体是不能有方法（函数）*
 
-关于类更具体的介绍在后面的章节~~
+关于类更具体的介绍在后面的章节
 
 
 

@@ -1,4 +1,4 @@
-# 第6章  函数
+# 第6章 函数
 
 
 
@@ -78,7 +78,7 @@ int main()
 
 ### 1.2 函数的声明
 
-和变量名一样，函数也必须在使用之前声明，==函数可以声明多次，但是只能定义一次==。函数的定义不是必须的，比如声明一个函数，我们从没有调用它，那么它可以不用定义（在15.3节会介绍）。函数的声明是没有函数体的，所以==声明可以不写形参名，只声明类型==，但在定义时如果在函数用到形参，则需要写上变量名。
+和变量名一样，函数也必须在使用之前声明，<span style="background: yellow">函数可以声明多次，但是只能定义一次。</span>函数的定义不是必须的，比如声明一个函数，我们从没有调用它，那么它可以不用定义（在15.3节会介绍）。函数的声明是没有函数体的，所以<span style="background: yellow">声明可以不写形参名，只声明类型</span>，但在定义时如果在函数用到形参，则需要写上变量名。
 
 ```cpp
 int func(int, int);		//声明可以不写变量名
@@ -131,7 +131,7 @@ int main()
 
 #### 指针形参
 
-==指针形参也是值传递的一种方式==，传入的指针是实参的副本（一个拷贝出来的指针），同样在函数体中改变指针的值（指向的地址）不会影响实参的值。
+<span style="background: yellow">指针形参也是值传递的一种方式</span>，传入的指针是实参的副本（一个拷贝出来的指针），同样在函数体中改变指针的值（指向的地址）不会影响实参的值。
 
 ```cpp
 void reset(int *p)
@@ -175,7 +175,7 @@ int main()
 
 
 
-> ==建议使用引用传参==， 对于不需要改变引用形参的值，可以将其声明为常量引用
+> <span style="background: yellow">建议使用引用传参</span>， 对于不需要改变引用形参的值，可以将其声明为常量引用
 
 
 
@@ -410,7 +410,7 @@ void foo(parm_list, ...);
 void foo(...);
 ```
 
-==省略符形参只能出现在形参列表的最后一个位置==
+<span style="background: yellow">省略符形参只能出现在形参列表的最后一个位置</span>
 
 > 第一种形式指定了 `foo` 函数的部分形参的类型，这些形参和正常的形参一样。省略符形参所对应的传入的实参无须类型检查。在第一种形式中，形参声明后的逗号是可选的。
 
@@ -503,7 +503,7 @@ bool str_subrange(const string &str1, const string &str2)
 
 
 
-==不要返回局部对象的引用或是指针==
+<span style="background: yellow">不要返回局部对象的引用或是指针</span>
 
 ```cpp
 const string &manip()
@@ -576,7 +576,7 @@ int factorial(int val)
 }
 ```
 
-==递归调用必须要有终止条件==
+<span style="background: yellow">递归调用必须要有终止条件</span>
 
 
 
@@ -587,7 +587,7 @@ int factorial(int val)
 ```cpp
 typedef int arrT[10];	//arrT 是一个类型别名，他表示的类型是含有10个整数的数组
 using arrT = int[10];	//和上面的等价
-arrT* func(int i);		//使用类型别名定义一个返回10个整数的数组的指针的函数
+arrT* func(int i);		//使用类型别 定义一个返回10个整数的数组的指针的函数
 ```
 
 
@@ -665,7 +665,7 @@ print(begin(j), end(j));		//
 
 #### 定义重载函数
 
-重载函数唯一区分的指标就是形参列表的数量和类型，==只有返回类型不同的函数不是重载函数==
+重载函数唯一区分的指标就是形参列表的数量和类型，<span style="background: yellow">只有返回类型不同的函数不是重载函数</span>
 
 下面三组是错误的重载函数
 
@@ -684,7 +684,7 @@ void print(const Integer&);	//错误，Integer是int的别名
 
 
 
-==重载函数虽然函数名称一样，但是它们是完全不同的函数（函数签名不同）==
+<span style="background: yellow">重载函数虽然函数名称一样，但是它们是完全不同的函数（函数签名不同）</span>
 
 
 
@@ -736,7 +736,7 @@ TODO
 
 ### 4.1重载与作用域
 
-==不要在某个语句块（函数体）的内部声明和外部名字一样的变量和函数！！！==
+<span style="background: yellow">不要在某个语句块（函数体）的内部声明和外部名字一样的变量和函数！！！</span>
 
 ```cpp
 string read();
@@ -828,7 +828,7 @@ constexpr函数 在编译阶段就已经计算出了返回值，对于constexpr�
 >  - 函数的返回类型及所有的形参类型都得是字面值类型
 >  - 函数体中必须有且只有一条 return 语句
 
-==内联函数和constexpr函数通常定义在头文件中==
+<span style="background: yellow">内联函数和constexpr函数通常定义在头文件中</span>
 
 
 
@@ -848,7 +848,7 @@ assert(expr);
 
 assert宏定义在`cassert`头文件中，预处理名字由预处理器而非编译器管理，所以我们可以直接使用预处理名字而无需提供 using 声明。
 
-assert宏常用于检查==“不能发生”==的条件。例如，一个对输入文本进行操作的程序可能要去所以给定单词的长度都大于某个阈值。此时程序可以包含一条如下所示的语句：
+assert宏常用于检查<span style="background: yellow">“不能发生”</span>的条件。例如，一个对输入文本进行操作的程序可能要去所以给定单词的长度都大于某个阈值。此时程序可以包含一条如下所示的语句：
 
 ```cpp
 assert(word.size() > threshold);
@@ -932,7 +932,7 @@ f(5.6);			//调用 void f(double, double)
 
 ## 7. 函数指针
 
-**函数指针**是指针，它指向的是函数。函数的类型由它的返回类型和形参类型共同决定，与==函数名无关==。例如：
+**函数指针**是指针，它指向的是函数。函数的类型由它的返回类型和形参类型共同决定，与<span style="background: yellow">函数名无关</span>。例如：
 
 ```cpp
 bool lengthCompare(const string &, const string &);
@@ -942,7 +942,7 @@ bool(const string&, const string&)
 bool (*pf)(const string&, const string&);	//指针pf是函数指针，未初始化
 ```
 
-==*pf两端的括号不能少==
+<span style="background: yellow">*pf两端的括号不能少</span>
 
 ```cpp
 //没有括号的话是定义一个名为pf的函数，返回值是 bool*
@@ -1037,37 +1037,4 @@ string::size_type sumLength(const string&, const string&);
 decltype(sumLength) *getFcn(const string&);
 ```
 
-==decltype作用于函数时返回的时函数类型，所以需要显示地加上 `*` 声明为指针==
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<span style="background: yellow">decltype作用于函数时返回的时函数类型，所以需要显示地加上 `*` 声明为指针</span>

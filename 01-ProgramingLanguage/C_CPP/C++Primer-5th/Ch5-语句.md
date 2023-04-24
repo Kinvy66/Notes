@@ -1,6 +1,4 @@
-# 第5章  语句
-
-
+# 第5章 语句
 
 ## 1. 简单语句
 
@@ -51,11 +49,21 @@ while (val < 10) {
 
 
 
+## 2. 语句作用域
+
+可以在 `if` 、`switch` 、`while` 和 `for` 语句的控制结构内定义变量。定义在控制结构当中的变量只有在相应语句的内部可见，一旦语句结束，变量也就超出了其作用范围了：
+
+```cpp
+while (int i = get_num()) // 每次迭代时创建并初始化 i
+    cout << i << endl;
+i = 0;		// 错误： 在循环外部无法访问i 
+```
 
 
-## 2. 条件语句
 
-### 2.1 if 语句
+## 3. 条件语句
+
+### 3.1 if 语句
 
 `if` 语句的语法形式：
 
@@ -96,12 +104,12 @@ else
 
 
 
-> - 尽量个if-else中的语句块加上花括号`{}`
-> - if-else的匹配原则是就近原则，空格和缩进在c++是不会作用的，不像某些语言（点名 python)
+> - 尽量在每个if-else中的语句块加上花括号`{}`
+> - if-else的匹配原则是就近原则，空格和缩进在c++是不会作用的，不像某些语言
 
 
 
-### 2.2 switch 语句
+### 3.2 switch 语句
 
 格式：
 
@@ -133,13 +141,13 @@ switch(lables) {
 
 
 
-## 3. 迭代语句
+## 4. 迭代语句
 
 迭代语句就是我们所说的循环语句，常见的形式有以下几种
 
 
 
-### 3.1 while语句
+### 4.1 while语句
 
 ```cpp
 while (condition)
@@ -148,7 +156,7 @@ while (condition)
 
 
 
-### 3.2 do-while 语句
+### 4.2 do-while 语句
 
 ```cpp
 do
@@ -158,7 +166,7 @@ while (condition);
 
 
 
-### 3.3 传统的for语句
+### 4.3 传统的for语句
 
 ```cpp
 for (init-statement; condition; expression)
@@ -167,7 +175,7 @@ for (init-statement; condition; expression)
 
 
 
-### 3.4 范围for语句
+### 4.4 范围for语句
 
 <span style="border:2px solid Red">C++11</span> 
 
@@ -178,21 +186,21 @@ for (declaration : expression)
 
 
 
-## 4. 跳转语句
+## 5. 跳转语句
 
-### 4.1 break 语句
+### 5.1 break 语句
 
 `break` 负责终止离它最近的 while、do while、for、或switch语句
 
 
 
-### 4.2 continue 语句
+### 5.2 continue 语句
 
 结束当前迭代，并进入下次迭代
 
 
 
-### 4.3 goto语句
+### 5.3 goto语句
 
 语法形式
 
@@ -202,19 +210,15 @@ goto label;
 
 
 
-> goto语句很好用，但是不建议用，会导致你代码结构比较乱
+> goto语句很好用，但是不建议用，会导致代码结构比较乱
 
 
 
+## 6. try语句块和异常处理
 
 
 
-
-## 5. try语句块和异常处理
-
-
-
-### 5.1 throw表达式
+### 6.1 throw表达式
 
 throw用于抛出异常
 
@@ -225,7 +229,7 @@ if(item1.isbn() != item2.isbn())
 
 
 
-### 5.2 try 语句块
+### 6.2 try 语句块
 
 语法形式
 
@@ -247,7 +251,7 @@ try{
 
 
 
-## 5.3 标准异常
+### 6.3 标准异常
 
 c++标准库定义了一组类，用于报告标准库函数遇到的问题，它们分别定义在4个头文件中
 

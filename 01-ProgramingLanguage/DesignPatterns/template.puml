@@ -1,0 +1,22 @@
+@startuml
+
+title  Template Method 结构
+
+abstract AbstractClass {
+# PrimitiveOperation1()
+# PrimitiveOperation2()
++ TmeplateMethond()
+}
+hide AbstractClass fields  
+
+Class ConcreteClass {
+- PrimitiveOperation1()
+- PrimitiveOperation2()
+
+}
+hide ConcreteClass fields  
+
+' Class ConcreteClass implements AbstractClass
+
+
+@enduml

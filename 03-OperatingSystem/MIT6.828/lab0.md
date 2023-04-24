@@ -174,6 +174,7 @@ https://mirrors.sjtug.sjtu.edu.cn/gnu/gmp/gmp-5.0.2.tar.bz2
    $ ./configure 
    $make
    $sudo make install
+   $cd ..
    ```
 
 ## 安装 QEMU
@@ -184,6 +185,19 @@ https://mirrors.sjtug.sjtu.edu.cn/gnu/gmp/gmp-5.0.2.tar.bz2
 $sudo apt install libsdl1.2-dev libtool-bin libglib2.0-dev  libz-dev  libpixman-1-dev
 $sudo apt install python2
 ```
+
+安装python2可能会出错，参考https://blog.csdn.net/u010879745/article/details/125115600 解决
+
+```bash
+$ cd /usr/local/lib
+$ sudo rm libgmp*
+$ sudo apt --fix-broken install
+$ sudo apt update
+```
+
+完成以上步骤回到之前的工作目录继续
+
+
 
 ### 2. 下载qemu
 
@@ -218,6 +232,8 @@ $sudo make install
    ```
    
    > 解决：在 qga/commands-posix.c文件中的 #include <sys/types.h> 下面增加#include <sys/sysmacros.h>即可
+   
+   ![image-20230331114207290](https://kinvy-images.oss-cn-beijing.aliyuncs.com/Images/image-20230331114207290.png)
 
 ### 4.测试
 

@@ -118,7 +118,7 @@ total.isbn();
 
 我们可以看到 `isbn()` 的函数体内容是 `return bookNo;` 我们知道上面的调用语句返回的就是 `total` 对应的 `bookNo` 属性（`total.bookNo)`，但是在 `isbn()` 函数体内并没显式的指明需要返回哪个实例对象的属性，这里其实有一个隐式的参数 `this`.
 
-`this` 是一个==指针==，准确的说是一个常量指针，指向的是当前调用该函数的对象的地址。比如上面的调用语句，this 指向的是 total 的地址，所以上面的调用过程是：
+`this` 是一个<span style="background: yellow">指针</span>，准确的说是一个常量指针，指向的是当前调用该函数的对象的地址。比如上面的调用语句，this 指向的是 total 的地址，所以上面的调用过程是：
 
 ```cpp
 //伪代码，用于说明调用成员函数的实际过程
@@ -131,7 +131,7 @@ Sales_data::isbn(&total);
 std::string isbn(Sales_data *const this);	//错误代码
 ```
 
-==上面代码是为了说明成员函数有一个名为this的隐式形参，实际代码不能把这个形参写出来==
+<span style="background: yellow">上面代码是为了说明成员函数有一个名为this的隐式形参，实际代码不能把这个形参写出来</span>
 
 虽然不能写出来，但是我们在成员函数体内可以使用`this` 这个形参名，比如 isbn的函数体可以改成
 
@@ -155,7 +155,7 @@ std::string isbn() const { return bookNo; }
 std::string isbn(const Sales_data *const this) { return bookNo; }		
 ```
 
-==再次说明，this是一个隐式形参，实际代码不能把这个形参写出来==
+<span style="background: yellow">再次说明，this是一个隐式形参，实际代码不能把这个形参写出来</span>
 
 
 
@@ -166,7 +166,7 @@ std::string isbn() const { return bookNo; }		//1
 std::string isbn() { return bookNo; }			//2
 ```
 
-==它们是重载函数== ，我们把这两个函数的真实的形式写出来，以同样的方式和条件调用，看下是否只有唯一一个匹配的函数。==再再次说明，实际代码不能把this形参显式写出来==
+<span style="background: yellow">它们是重载函数</span> ，我们把这两个函数的真实的形式写出来，以同样的方式和条件调用，看下是否只有唯一一个匹配的函数。<span style="background: yellow">再再次说明，实际代码不能把this形参显式写出来</span>
 
 ```cpp
 //isbn() 的真实形式，实际代码不能把this写出来
@@ -229,7 +229,7 @@ double Sales_data::avg_price() const {
 
 成员函数类外定义和普通函数的定义没有什么区别，只是成员函数需要在函数名的前面加上对应的类名。
 
-==类内定义的成员函数默认是inline函数，定义在类外的要成为内联函数，需要显显式的指定，在函数定义的前面加 inline关键字==
+<span style="background: yellow">类内定义的成员函数默认是inline函数，定义在类外的要成为内联函数，需要显显式的指定，在函数定义的前面加 inline关键字</span>
 
 
 
@@ -246,7 +246,7 @@ Sales_data& Sales_data::combine(const Sales_data &rhs)
 }
 ```
 
-==再再再次说明，this 是一个隐式形参，不能写出来，但是可以再函数体中使用==
+<span style="background: yellow">再再再次说明，this 是一个隐式形参，不能写出来，但是可以再函数体中使用</span>
 
 
 
@@ -351,7 +351,7 @@ Sales_data(const std::string &s, unsigned n, double p)
 }
 ```
 
-使用 `=` 赋值运算符和使用初始化列表初始化成员属性效果是一样的。但是初始化列表的方式而且更高效，==强烈建议使用初始化列表初始化成员属性==
+使用 `=` 赋值运算符和使用初始化列表初始化成员属性效果是一样的。但是初始化列表的方式而且更高效，<span style="background: yellow">强烈建议使用初始化列表初始化成员属性</span>
 
 构造函数的类外定义
 
@@ -363,7 +363,7 @@ inline Sales_data::Sales_data(std::istream &is)
 }
 ```
 
-==定义在类内的函数，自动成为内联函数==， 在类外定义成员函数，如果需要成为内联函数，需要手动添加 `inline` 关键字
+<span style="background: yellow">定义在类内的函数，自动成为内联函数</span>， 在类外定义成员函数，如果需要成为内联函数，需要手动添加 `inline` 关键字
 
 
 
@@ -396,7 +396,7 @@ Sales_data total("654323");		//调用 Sales_data(const std::string &s)构造函�
 
 ### 1.5 拷贝、赋值和析构
 
-c++编译器至少给一个类添加4个函数
+c++编译器默认情况下至少给一个类添加4个函数
 
 1. 默认构造函数（无参，函数体为空）
 2. 默认析构函数（无参，函数体为空）
@@ -567,7 +567,7 @@ friend std::istream &read(std::istream&, Sales_data&);
 
 说明
 
-> 在类内声明了友元函数，不能看做函数的声明，这个只是声明友元，==在类外还是需要声明函数的原型== 。
+> 在类内声明了友元函数，不能看做函数的声明，这个只是声明友元，<span style="background: yellow">在类外还是需要声明函数的原型</span> 。
 >
 > 友元的声明位置没有限制可以在类内的任何位置，一般建议集中声明在类的开始或是结束。
 
@@ -620,7 +620,7 @@ private：
 
 #### 可变数据成员
 
-在前面讲过常函数，关于常函数还有一个特性：==常函数内不可以修改成员属性==
+在前面讲过常函数，关于常函数还有一个特性：<span style="background: yellow">常函数内不可以修改成员属性</span>
 
 ```cpp
 class Person {
@@ -696,7 +696,7 @@ private：
 myScreen.move(4, 0).set('#');
 ```
 
-这种方式叫做==链式编程== ，为什么可以连续的调用呢，我们回到函数的定义
+这种方式叫做<span style="background: yellow">链式编程</span>，为什么可以连续的调用呢，我们回到函数的定义
 
 这两个函数的返回值都是 `*this` ，先看前面部分 `myScreen.move(4, 0)` 这个调用返回的是 `*this` 对应到这里就是实例对象 `myScreen`, 既然是实例对象本身，那么我可以继续调用 `set('#')` , 两次调用都会作用到同一个实例对象上。
 
@@ -731,7 +731,7 @@ struct A
         return *this;
     }
     
-    A& func2()
+    A func2()
     {
         cout << "1.func2 num :" << m_num << endl;
         m_num = 2;
@@ -759,6 +759,8 @@ a.m_num = 0
 2.func2 num :2
 a.m_num = 1
 ```
+
+可以发现，上面的代码经过链式调用，预期的结果，最后输出的 m_num应该是2。这是因为func1 和 func2 返回的不是引用，那么相当于返回了两个不同的A对象。
 
 
 
@@ -840,7 +842,7 @@ void X::h() { return f(); }		//正确，现在f的声明在作用域中了
 
 
 
-==友元的声明不能替代函数的声明==
+<span style="background: yellow">友元的声明不能替代函数的声明</span>
 
 
 
@@ -1072,7 +1074,7 @@ item.combine(null_book);
 
 上面的7，8两行代码是正确。`combine`定义的参数类型是 `const Sales_data`，但是我们传入一个 `string` 类型的也是可以的。这是发生了类类型的隐式转换，把传入的`string`隐式的转换为了 `Sales_data` ，这种转换是由**转换构造函数**实现的，所谓转换构造函数就是只定义了一个实参的构造函数，上面的构造函数1和2都是转换构造函数。所以执行`item.combine(null_book);` 会自动的调用`Sales_data(const std::string &s);	` 创建一个临时的`Sales_data`对象。
 
-==**只允许一步类类型转换**==
+<span style="background: yellow">**只允许一步类类型转换**</span>
 
 ```cpp
 //错误： 需要用户定义的两种转换：
@@ -1116,7 +1118,7 @@ item.combine(cin);			//错误： istream构造函数是explicit的
 `explicit`使用注意
 
 - `explicit` 只对一个实参的构造函数有效，（多个实参的构造函数也不能用于执行隐式转换）
-- 只能再类内声明构造函数时使用`explicit`关键字，在类外定义时不能重复
+- 只能在类内声明构造函数时使用`explicit`关键字，在类外定义时不能重复
 - `explicit` 构造函数只能用于直接初始化，不能用于拷贝形式的初始化（使用 `=`）
 
 
@@ -1266,13 +1268,37 @@ r = ac1.rate();			//使用实例对象调用static void rate(double);
 
 
 
-==静态成员的注意：==
+<span style="background: yellow">静态成员的注意：</span>
 
 - 对于静态的成员属性，必须类内声明类外初始化（如果需要初始化）
 
 - 成员函数可以定义在类内和类外，
 - 成员（函数，属性）定义在类外时不需要 `static` 关键字
 - 静态成员函数内不可以访问非静态成员属性
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

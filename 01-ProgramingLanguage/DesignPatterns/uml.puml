@@ -1,0 +1,10 @@
+@startuml
+
+title   组合关系
+
+class Company
+class BusinessUnit
+
+Company "1" *- "n" BusinessUnit : 包含
+
+@enduml
