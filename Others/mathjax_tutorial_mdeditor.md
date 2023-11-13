@@ -579,7 +579,7 @@ $$
 \end{align*}
 $$
 
-如果你需要将大括号里面显示的分隔符也变大，可以使用 `\middle` 命令，此处分别使用单竖线 `|` 和双竖线 `\\|` 。
+如果你需要将大括号里面显示的分隔符也变大，可以使用 `\^{middle}^` 命令，此处分别使用单竖线 `|` 和双竖线 `\\|` 。
 
 - 例子：
 
@@ -962,7 +962,7 @@ $ \begin{Vmatrix} 1 & 2 \\ 3 & 4 \\ \end{Vmatrix} $
 $$
 \begin{pmatrix}
     1 & a_1 & a_1^2 & \cdots & a_1^n \\
-    1 & a_2 & a_2^2 & \cdots & a_2^n \\
+    1 & a_2 & a_2^2 & \cdots & a_2^n \\ 
     \vdots & \vdots & \vdots & \ddots & \vdots \\
     1 & a_m & a_m^2 & \cdots & a_m^n \\
 \end{pmatrix}
@@ -1132,7 +1132,7 @@ $$
 - 显示：
 
 $$
-    \left.
+\left.
         \begin{array}{l}
             \text{if $n$ is even:} & n/2 \\
             \text{if $n$ is odd:} & 3n+1 \\
